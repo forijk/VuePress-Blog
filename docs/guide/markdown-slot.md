@@ -1,20 +1,20 @@
-# Markdown Slot
+# Markdown 插槽
 
-VuePress implements a content distribution API for Markdown. With this feature, you can split your document into multiple fragments to facilitate flexible composition in the layout component.
+VuePress 实现了一套针对 Markdown 的内容分发 API。通过这个特性，你可以将你的文档分割成多个片段，以便于在布局组件中灵活组合。
 
-## Why do I need Markdown Slot?
+## 为什么需要 Markdown 插槽
 
-First, let's review the relationship between layout components and markdown files:
+首先，我们回顾一下布局组件和 Markdown 文件之间的关系：
 
 <diagram-markdown-slot-relationship/>
 
-Markdown files are providers of metadata (Page content, Configuration, etc.), while layout components consume them. We can use `frontmatter` to define some metadata for common data types, but `frontmatter` is hard to do something about markdown / HTML, a complex metadata that involves differences before and after compilation.
+Markdown 文件是元数据（页面内容、配置等）的提供者，而布局组件负责消费他们。我们可以通过 frontmatter 来定义一些普通数据类型的元数据，但对于 Markdown / HTML 这种涉及到编译前后差异的复杂元数据，frontmatter 却无能能力。
 
-Markdown Slot is to solve this kind of problem.
+Markdown 插槽便解决了这一类问题。
 
-## Named Slots
+## 具名插槽
 
-You can define a named markdown slot through the following markdown syntax:
+你可以通过下述的语法来定义一个具名 Markdown 插槽：
 
 ``` md
 ::: slot name
@@ -22,27 +22,27 @@ You can define a named markdown slot through the following markdown syntax:
 :::
 ```
 
-Use the `Content` component to use the slot in the layout component:
+在布局组件中利用 `Content` 组件来使用该插槽：
 
 ``` vue
 <Content slot-key="name"/>
 ```
 
-::: tip
-Here we are using `slot-key` instead of `slot`, because in Vue, `slot` is a reserved prop name.
+::: tip 提示
+这里我们使用的是 `slot-key` 而不是 `slot`，这是因为在 Vue 中，`slot` 是一个保留的 `prop` 名。
 :::
 
-## Default Slot Content
+## 插槽的默认内容
 
-By default, the slot-free part of a markdown file becomes the default content of a markdown slot, which you can access directly using the `Content` component:
+默认情况下，一个 Markdown 文件中的普通内容将会成为 Markdown 插槽的默认内容，你可以直接使用 `Content` 组件来访问它：
 
 ``` vue
 <Content/>
 ```
 
-## Example
+## 例子
 
-Suppose your layout component is as follows:
+假设你的布局组件如下：
 
 ``` vue
 <template>
@@ -60,7 +60,7 @@ Suppose your layout component is as follows:
 </template>
 ```
 
-If the markdown content of a page is like this:
+如果一个页面的 `markdown` 的内容是这样：
 
 ```md
 ::: slot header
@@ -75,7 +75,7 @@ Here's some contact info
 :::
 ```
 
-Then the rendered HTML of this page will be:
+那么这一页最终被渲染出的 HTML 将会是：
 
 ```html
 <div class="container">
@@ -100,6 +100,7 @@ Then the rendered HTML of this page will be:
 </div>
 ```
 
-Note that:
-1. Unlike the slot mechanism provided by [Vue](https://vuejs.org/v2/guide/components-slots.html) itself, each content distribution is wrapped in a `div` whose class is `content` with the name of the slot.
-2. Please ensure the uniqueness of the slot defined.
+请注意：
+
+1. 和 Vue 本身提供的 slot 机制不太相同，每个 Content 分发的内容都会被一个 div 所包裹，其 class 是 content 和 slot 的名字。
+2. 请确保所定义的 slot 的唯一性。

@@ -1,13 +1,13 @@
 ---
 title: search
-metaTitle: Search Plugin | VuePress
+metaTitle: Search 插件 | VuePress
 ---
 
-# [@vuepress/plugin-search](https://github.com/vuejs/vuepress/tree/master/packages/%40vuepress/plugin-search)
+# [@vuepress/plugin-search](https://github.com/vuejs/vuepress/tree/master/packages/@vuepress/plugin-search)
 
-> [Headers](../../miscellaneous/glossary.md#headers)-based search plugin
+> 基于 [Headers](../../miscellaneous/glossary.md#headers) 的搜索插件
 
-## Install
+## 安装
 
 ```bash
 yarn add -D @vuepress/plugin-search@next
@@ -15,25 +15,25 @@ yarn add -D @vuepress/plugin-search@next
 ```
 
 ::: tip
-Note that this plugin has been included in **default theme**, the search box you see now is powered by the plugin.
+请注意，此插件已包含在**默认主题**中，你现在看到的搜索便是由本插件提供支持。
 :::
 
-## Usage
+## 使用
 
-1. Enable this plugin:
+1. 启用此插件：
 
 ```js
 // .vuepress/config.js or themePath/index.js
 module.exports = {
   plugins: [
     ['@vuepress/search', {
-      searchMaxSuggestions: 10      
+      searchMaxSuggestions: 10
     }]
   ]
 }
 ```
 
-2. This plugin will automatically inject a webpack alias `@SearchBox` pointing to the search component so that you can use it directly in your [layout](../../miscellaneous/glossary.md#layout) component:
+2. 本插件将自动注入指向搜索组件的 webpack 别名 `@SearchBox`，以便您可以直接在 [layout](../../miscellaneous/glossary.md#layout) 组件中使用它：
 
 ```vue
 <template>
@@ -56,53 +56,23 @@ export default {
 </script>
 ```
 
-## Options
+## 选项
 
 ### searchMaxSuggestions
 
-- Type: `number`
-- Default: 5
+- 类型: `number`
+- 默认值: 5
 
-Set the maximum number of results for search.
+设置搜索的最大结果数。
 
-### test
+## 技巧
 
-- Type: `RegExp` | `Array<RegExp>`
-- Default: `null`
+### 调整默认颜色
 
-Set up searchable paths with regular expressions. If no test expression is provided it will search on all paths. Considering you have this structure:
-
-```bash
-docs/
-├── .vuepress/            
-│    └── ...
-│
-├── master/               
-│    └── ...
-│
-├── 1.0/               
-│    └── ...
-│
-└── 2.0/               
-     └── ...                       
-```
-
-You can set up searchable paths with `test` as:
-
-- RegExp: `'/1\.0/'`
-- Array of RegExp: `['/1\.0/', '/2\.0/']`
-
-
-Otherwise,  the default search will return duplicates, once you can have similar content between folders `/master/`, `/1.0/` and `/2.0/`.
-
-## Tips
-
-### Tweak the default colors.
-
-Since the Search component leverages the built-in palette, you can tweak the default colors via `styles/palette.styl`:
+由于该搜索组件使用了内置调色板，你可以通过 `styles/palette.styl` 来调整搜索框的默认颜色：
 
 ```stylus
-// colors of the searchbox you see now:
+// 你现在看到的这个搜索栏的颜色：
 $accentColor = #3eaf7c
 $textColor = #2c3e50
 $borderColor = #eaecef

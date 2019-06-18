@@ -1,20 +1,20 @@
 ---
 title: register-components
-metaTitle: Register Components Plugin | VuePress
+metaTitle: 注册组件的插件 | VuePress
 ---
 
 # [@vuepress/plugin-register-components](https://github.com/vuejs/vuepress/tree/master/packages/%40vuepress/plugin-register-components)
 
 > register-components plugin for vuepress
 
-## Install
+## 安装
 
 ```bash
 yarn add -D @vuepress/plugin-register-components@next
 # OR npm install -D @vuepress/plugin-register-components@next
 ```
 
-## Usage
+## 使用
 
 ```javascript
 module.exports = {
@@ -22,14 +22,14 @@ module.exports = {
 }
 ```
 
-## Options
+## 选项
 
 ### componentsDir
 
-- Type: `Array | String`
-- Default: `[]`
+- 类型: `Array | String`
+- 默认值: `[]`
 
-All components in this directory will be registered as global components, naming of components will follow the components found in [.vuepress/components](https://vuepress.vuejs.org/guide/using-vue.html#using-components).
+在这个目录下的所有组件将会被注册为全局组件，组件的命名将遵循在 [.vuepress/components](https://vuepress.vuejs.org/guide/using-vue.html#using-components) 中找到的组件的命名。
 
 ``` js
 module.exports = {
@@ -46,10 +46,10 @@ module.exports = {
 
 ### components
 
-- Type: `{ name: string, path: string }`
-- Default: `[]`
+- 类型: `{ name: string, path: string }`
+- 默认值: `[]`
 
-Register global components by explicit name and path.
+通过明确的名称和路径来注册组件。
 
 ``` js
 module.exports = {
@@ -71,7 +71,7 @@ module.exports = {
 
 ### getComponentName
 
-- Type: `(file: string) => string`
-- Default: `file => file.replace(/\/|\\/g, '-')`
+- 类型: `(file: string) => string`
+- 默认值: `file => file.replace(/\/|\\/g, '-')`
 
-Customize component names for files under `componentsDir`.
+自定义 `componentsDir` 中注册的组件的名称。

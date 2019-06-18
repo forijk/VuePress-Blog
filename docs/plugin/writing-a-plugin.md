@@ -1,6 +1,6 @@
-# Writing a Plugin
+# 开发插件
 
-A plugin should export a `plain JavaScript object`(`#1`). If the plugin needs to take options, it can be a function that returns a plain object(`#2`). The function will be called with the plugin's options as the first argument, along with [ctx](./context-api.md) which provides some compile-time metadata.
+一个插件应该导出一个普通的 JavaScript 对象（`#1`），如果插件需要接受配置选项，那么它可以是一个返回对象的函数（`#2`），这个函数接受插件的配置选项为第一个参数、包含编译期上下文的 [ctx](./context-api.md) 对象作为第二个参数。
 
 ``` js
 // #1
@@ -19,5 +19,5 @@ module.exports = (options, ctx) => {
 ```
 
 ::: tip
-A VuePress plugin module should be a `CommonJS Module` because VuePress plugins runs on the Node side.
+一个 VuePress 插件应该是一个 `CommonJS 模块`，因为 VuePress 插件运行在 Node 端。
 :::

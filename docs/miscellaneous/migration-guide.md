@@ -2,24 +2,24 @@
 sidebar: auto
 ---
 
-# Migration from 0.x
+# 从 VuePress 0.x 迁移
 
-## Site Config
+## 站点配置
 
-### ga <Badge text="replaced"/>
+### ga <Badge text="替换"/>
 
-GA has been separated into a standalone plugin [@vuepress/plugin-google-analytics](../plugin/official/plugin-google-analytics.md).
+GA 已经被分离为一个单独的插件 [@vuepress/plugin-google-analytics](../plugin/official/plugin-google-analytics.md)。
 
-::: upgrade
+::: upgrade 
 
-1. Install `@vuepress/plugin-google-analytics`:
+1. 安装 `@vuepress/plugin-google-analytics`:
 
 ```bash
 yarn add -D @vuepress/plugin-google-analytics@next
 # OR npm install -D @vuepress/plugin-google-analytics@next
 ```
 
-2. Update `vuepress/config.js`:
+2. 更新 `vuepress/config.js`:
 
 ```diff
 module.exports = {
@@ -33,12 +33,12 @@ module.exports = {
 ```
 :::
 
-### markdown.config <Badge text="renamed"/>
+### markdown.config <Badge text="重命名"/>
 
-Using `extendMarkdown`：。
+使用 `extendMarkdown`：
 
 ::: upgrade
-Update `vuepress/config.js`:
+更新 `vuepress/config.js`:
 ```diff
 // vuepress/config.js
 module.exports = {
@@ -50,28 +50,28 @@ module.exports = {
 ```
 :::
 
-### serviceWorker <Badge text="replaced"/>
+### serviceWorker <Badge text="替换"/>
 
-Service Worker related features have been separated into a standalone plugin [@vuepress/plugin-pwa](../plugin/official/plugin-pwa.md).
+Service Worker 相关的功能已经被分离为一个单独的插件 [@vuepress/plugin-pwa](../plugin/official/plugin-pwa.md)。
 
 ::: upgrade
-See: [@vuepress/plugin-pwa > Migration from 0.x](../plugin/official/plugin-pwa.md#migration-from-0-x)
+参考: [@vuepress/plugin-pwa > 从 0.x 迁移](../plugin/official/plugin-pwa.md#从-0-x-迁移)
 :::
 
-## Default Theme Config
+## 默认主题配置
 
-### `.vuepress/override.styl` <Badge text="replaced"/>
+### `.vuepress/override.styl` <Badge text="替换"/>
 
-Replaced by `.vuepress/styles/palette.styl`.
+使用 `.vuepress/styles/palette.styl` 代替。
 
 ::: upgrade
-See: [Config > palette.styl](../config/README.md#palette-styl)
+参考: [Config > palette.styl](../config/README.md#palette-styl)
 :::
 
-### `.vuepress/style.styl` <Badge text="replaced"/>
+### `.vuepress/style.styl` <Badge text="替换"/>
 
-Replaced by `.vuepress/styles/index.styl`.
+使用 `.vuepress/styles/index.styl` 代替。
 
 ::: upgrade
-See: [Config > index.styl](../config/README.md#index-styl)
+参考: [Config > index.styl](../config/README.md#index-styl)
 :::

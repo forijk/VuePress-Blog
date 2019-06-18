@@ -1,22 +1,24 @@
 ---
 title: medium-zoom
-metaTitle: Medium-Zoom Plugin | VuePress
+metaTitle: Medium-Zoom 插件 | VuePress
 ---
 
-# [@vuepress/plugin-medium-zoom](https://github.com/vuejs/vuepress/tree/master/packages/%40vuepress/plugin-medium-zoom)
+# [@vuepress/plugin-medium-zoom](https://github.com/vuejs/vuepress/tree/master/packages/@vuepress/plugin-medium-zoom)
 
-> [medium-zoom](https://github.com/francoischalifour/medium-zoom) plugin
+> [medium-zoom](https://github.com/francoischalifour/medium-zoom) 插件
 
-## Install
+## 安装
 
 ```bash
 yarn add -D @vuepress/plugin-medium-zoom@next
 # OR npm install -D @vuepress/plugin-medium-zoom@next
 ```
 
+## 使用
+
 ## Usage
 
-**Simple**:
+**简单使用**:
 
 ```javascript
 module.exports = {
@@ -24,7 +26,7 @@ module.exports = {
 }
 ```
 
-**With options**:
+**自定义选项**:
 
 ```javascript
 module.exports = {
@@ -41,18 +43,18 @@ module.exports = {
 }
 ```
 
-## Options
+## 选项
 
-### selector
+### selector 
 
-- Type: `string`
-- Default: `.theme-default-content img`
+- 类型: `string`
+- 默认值: `.theme-default-content img`
 
-Note that `.theme-default-content` is the class name of [`<Content />`](../../guide/using-vue.md#content) component in default theme.
+值得注意的是， `.theme-default-content` 是默认主题添加给 [`<Content />`](../../guide/using-vue.md#content) 组件的 class name。
 
 ### options
 
-- Type: `object`
-- Default: `undefined`
+- 类型: `object`
+- 默认值: `undefined`
 
-[Options](https://github.com/francoischalifour/medium-zoom#options) for [medium-zoom](https://github.com/francoischalifour/medium-zoom).
+[medium-zoom](https://github.com/francoischalifour/medium-zoom) 的 [选项](https://github.com/francoischalifour/medium-zoom#options)。

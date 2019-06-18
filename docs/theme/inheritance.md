@@ -1,31 +1,30 @@
-# Theme Inheritance <Badge type="warn" text="beta" />
+# 主题的继承 <Badge type="warn" text="beta" />
 
-## Motivation
+## 动机
 
-We have two main reasons to support this feature:
+我们有两个主要的理由来支持这个特性：
 
-1. VuePress provides users with a [default theme](./default-theme-config.md), which meets the needs of document writers in most scenarios, even so, there are still many users who choose to `eject` and modify it, even if they may only need to make minor changes to one of the components.
-   
-2. In [0.x](https://vuepress.vuejs.org/guide/custom-themes.html#site-and-page-metadata), only one `Layout.vue` is needed for a theme, so we can achieve simple expansion by directly wrapping `Layout.vue` of another theme.
+1. VuePress 为开发者提供了一个[默认主题](./default-theme-config.md)，它能在大多数场景下满足了文档编写者的需求。即便如此，仍然还是会有不少用户选择将其 eject 出来进行修改，即使他们可能只是想要修改其中的某个组件。
+2. 在 [0.x](https://vuepress.vuejs.org/guide/custom-themes.html#site-and-page-metadata) 中，主题的入口只需要一个 `Layout.vue`，所以我们可以通过包装另一个主题的 `Layout.vue` 来实现简单的拓展。
+  
+   到了 1.x 中，一个主题的元素开始变得复杂，我们开始有了[主题级别的配置](./option-api.md)，它支持为主题添加插件、自定义 GlobalLayout 等。除此之外，我们还有一些引入了主题开发的 [目录结构的约定](./writing-a-theme.md#目录结构)，如 `styles/index.styl`，在这样的背景下，我们无法使用 0.x 的方式来实现继承了。
 
- By 1.x, the elements of a theme has become more complex, we have started to have [theme level configuration](./option-api.md), which supports plugins, custom global layout, etc. In addition, we have also introduced the [directory structure conventions](./writing-a-theme.md#directory-structure) on theme development, such as `styles/index.styl`, under this background, we can not achieve inheritance as 0.x did.
+因此，我们需要提供一种合理、可靠的主题继承方案。
 
-Therefore, we need to provide a reasonable and reliable theme inheritance strategy.
+## 概念
 
-## Concepts
+为了介绍本节，我们先几个基本概念：
 
-To introduce this section, let's start with a few basic concepts:
+- **原子主题**：即父主题，类似默认主题这种完全从头实现的主题。
+- **派生主题**：即子主题，基于父主题创建的主题；
 
-- **Atomic theme**：i.e. the parent theme, which is implemented entirely from scratch, like the default theme.
-- **Derived theme**：i.e. the child theme, which is created based on parent theme.
-
-::: tip
-For now theme inheritance doesn't support high-order inheritance, that means, a derived theme cannot be inherited.
+::: tip 提示
+主题继承暂时不支持高阶继承，也就是说，一个派生主题无法被继承。
 :::
 
-## Usage
+## 使用
 
-Suppose you want to create a theme inherited from the default theme, you just need to configure the [extend](./option-api.md#extend) option in your theme configuration:
+假设你想创建一个继承自 VuePress 默认主题的派生主题，你只需要在你的主题配置中配置 [extend](./option-api.md#extend) 选项：
 
 ```js
 module.exports = {
@@ -33,37 +32,37 @@ module.exports = {
 }
 ```
 
-## Inheritance Strategy
+## 继承策略
 
-All the capabilities of the parent theme will be `"passed"` to the child theme. For file-level conventions, child theme can override it by creating a file with the same name in the same location. For some theme configuration options, such as [globalLayout](./option-api.md/globallayout), child theme can override it by the same name configuration.
+父主题的所有能力都会"传递"给子主题，对于文件级别的约定，子主题可以通过在同样的位置创建同名文件来覆盖它；对于某些主题配置选项，如 [globalLayout](./option-api.md#globallayout)，子主题也可以通过同名配置来覆盖它。
 
-The [file-level conventions](./writing-a-theme.md#directory-structure) are as follows:
+[文件级别的约定](./writing-a-theme.md#目录结构)如下：
 
-- **Global Components**，i.e. the Vue components under `theme/global-components`.
-- **Components**，i.e. the Vue components under `theme/components`.
-- **Global Style and Palette**，i.e. `index.styl` and `palette.styl` under `theme/styles`.
-- **HTML Template**，i.e. `dev.html` and `ssr.html` under `theme/templates`.
-- **Theme-Level App Enhancement File**，i.e. `theme/enhanceApp.js`
+- **全局组件**，即放置在 `theme/global-components` 中的 Vue 组件。
+- **组件**，即放置在 `theme/components` 中的 Vue 组件。
+- **全局的样式和调色板**，即放置在 `theme/styles` 中的 `index.styl` 和 `palette.styl`。
+- **HTML 模板**，即放置在 `theme/templates` 中的 `dev.html` 和 `ssr.html`。
+- **主题水平的客户端增强文件**，即 `theme/enhanceApp.js`
 
-For theme configuration, the configuration options that can be overrode by child theme are as follows:
+对于主题配置，能被子主题覆盖的配置选项如下：
 
 - [devTemplate](./option-api.md#devtemplate)
 - [ssrTemplate](./option-api.md#ssrtemplate)
 - [globalLayout](./option-api.md#globallayout)
 
-Theme configuration options that cannot be overrode by child theme:
+无法被子主题覆盖的主题配置选项如下：
 
 - [extend](./option-api.md#extend)
 
-Theme configuration options requiring special treatment:
+需要特殊处理的主题选项：
 
-- [plugins](./option-api.md#plugins)：See [Override Plugins](#override-plugins)。
+- [plugins](./option-api.md#plugins)：参见 [插件的覆盖](#插件的覆盖)。
 
-## Override Plugins
+## 插件的覆盖
 
-For [plugins](./option-api.md#plugins) in the parent theme, the child theme cannot override it intuitively, but the options of plugin can be overrode by creating plugin configuration with the same name.
+对于父主题中的 [plugins](./option-api.md#plugins), 子主题不会直接覆盖它，但是插件的选项可以通过创建同名的插件配置来覆盖。
 
-For example, if the parent theme has the following configuration:
+举例来说，如果父主题具有如下配置：
 
 ```js
 // parentThemePath/index.js
@@ -76,7 +75,7 @@ module.exports = {
 }
 ```
 
-The child theme can modify the options of plugin in the following ways:
+那么子主题可以通过如下方式来修改该插件的默认值：
 
 ```js
 // themePath/index.js
@@ -89,7 +88,7 @@ module.exports = {
 }
 ```
 
-Child theme can even disable it:
+也可以选择禁用它：
 
 ```js
 // themePath/index.js
@@ -101,16 +100,16 @@ module.exports = {
 ```
 
 ::: warning
-Normally, you don't need to do this unless you know clearly that disabling plugins in parent themes won't cause problems.
+一般情况下，你都不需要这样做，除非你明确知道禁用父主题中的插件不会带来问题。
 :::
 
-## Override Components
+## 组件的覆盖
 
-You may want to override the same-name components in the parent theme. By default, when the components in the parent theme use relative paths to reference other components, you will not be able to do this because you cannot modify the code of the parent theme at runtime.
+你可能想要在子主题中覆盖父主题中的同名组件，默认情况下，当父主题中的组件都使用相对路径引用其他组件时，你将不可能做到这一点，因为你无法在运行时修改父主题的代码。
 
-VuePress achieves this requirement in a clever way, but there is a requirement for the parent theme - **All components must use the `@theme` alias to refer to other components**.
+VuePress 则通过一种巧妙的方式实现了这种需求，但这对父主题有一定的要求——**所有的组件都必须使用 `@theme` 别名来引用其他组件**。
 
-For example, if you are developing an atomic theme with the following structure:
+举例来说，如果你正在开发的一个原子主题的结构如下：
 
 ::: vue
 theme
@@ -123,9 +122,9 @@ theme
 │   └── `Layout.vue`
 ├── package.json
 └── index.js
-:::
+::: 
 
-Then, in any Vue components on the theme, **you should access the theme root directory through `@theme`**:
+那么，在该主题中的任意 Vue 组件中，**你都应该通过 `@theme` 来访问主题根目录**：
 
 ```vue
 <script>
@@ -134,7 +133,7 @@ import Home from '@theme/components/Navbar.vue'
 </script>
 ```
 
-On this premise, when you create a `Navbar` component in the same place in the child theme
+在这样的前提下，当你在子主题中同样的位置创建一个 `Navbar` 组件时：
 
 ::: vue
 theme
@@ -142,18 +141,18 @@ theme
     └── `Navbar.vue`
 ::: 
 
-`@theme/components/Navbar.vue` will automatically map to the Navbar component in the child theme. and when you remove the component, `@theme/components/Navbar.vue` will automatically restore to the Navbar component in the parent theme.
+`@theme/components/Navbar.vue` 会自动地映射到子主题中的 Navbar 组件，当你移除这个组件时，`@theme/components/Navbar.vue` 又会自动恢复为父主题中的 Navbar 组件。
 
-In this way, you can easily "tamper" with some part of an atomic theme.
+如此一来，就可以实现轻松地“篡改”一个原子主题的某个部分。
 
 ::: tip
-1. You'd better override the component based on the code of the corresponding component in the parent theme.
-2. Currently, when developing theme locally, you need to manually restart dev server when a component is created or removed.
+1. 组件的覆盖，最好直接基于父主题中对应组件的代码来修改；
+2. 目前，在本地开发子主题，每次创建或移除组件时，你需要手动重启 Dev Server。
 :::
 
-## Access Parent Theme
+## 访问父主题
 
-You can use `@parent-theme` to access the root path of the parent theme. The following example shows creating a layout component with the same name in a child theme and simply using slots in the parent theme. [@vuepress/theme-vue](https://github.com/vuejs/vuepress/tree/master/packages/%40vuepress/theme-vue) is created in this way.
+你可以使用 `@parent-theme` 来访问父主题的根路径，下述示例展示了在子主题中创建一个同名的布局组件，并简单使用父主题中的 slot，[@vuepress/theme-vue](https://github.com/vuejs/vuepress/tree/master/packages/%40vuepress/theme-vue) 便是通过这种方式创造的。
 
 ```vue
 <!-- themePath/components/Foo.vue -->

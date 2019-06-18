@@ -1,13 +1,17 @@
+---
+metaTitle: Option API | Plugin
+---
+
 # Option API
 
 ## name
 
-- Type: `string`
-- Default: undefined
+- 类型: `string`
+- 默认值: undefined
 
-The name of the plugin.
+插件的名字。
 
-Internally, vuepress will use the plugin's package name as the plugin name. When your plugin is a local plugin (i.e. using a pure plugin function directly), please be sure to configure this option, that is good for debug tracking.
+在内部，VuePress 将会使用插件的包名作为插件的名称。当你你插件是一个本地插件（即直接使用了一个纯函数）时，请确保设定了该选项，这对调试更有利。
 
 ```js
 // .vuepress/config.js
@@ -25,13 +29,13 @@ module.exports = {
 
 ## plugins
 
-- Type: `array`
-- Default: `undefined`
+- 类型: `array`
+- 默认值: undefined
 
-A plugin can contain multiple plugins like a preset.
+一个插件可以像 preset 一样包含多个插件。
 
 ```js
-// A plugin
+// 一个插件
 module.exports = {
   plugins: [
     'tag',
@@ -42,33 +46,33 @@ module.exports = {
 
 ## chainWebpack
 
-- Type: `Function`
-- Default: undefined
+- 类型: `Function`
+- 默认值: undefined
 
-Modify the internal webpack config with [webpack-chain](https://github.com/mozilla-neutrino/webpack-chain).
+使用 [webpack-chain](https://github.com/mozilla-neutrino/webpack-chain) 来修改内部的 webpack 配置：
 
 ```js
 module.exports = {
   chainWebpack (config, isServer) {
-    // config is an instance of ChainableConfig
+    // config 是一个 ChainableConfig 的实例
   }
 }
 ```
 
-::: tip
-Since VuePress is a Vue-SSR based application, there will be two webpack configurations, `isServer` is used to determine whether the current webpack config is applied to the server or client.
+::: tip 提示
+由于 VuePress 是一个基于 Vue-SSR 的应用，这里会有两个 webpack 配置，`isServer` 用于决定当前的 webpack 配置是应用到 server 还是 client。
 
-**Also see:**
+**参考:**
 
-- [Vue SSR > Build Configuration](https://ssr.vuejs.org/guide/build-config.html)
+- [Vue SSR > 构建配置](https://ssr.vuejs.org/zh/guide/build-config.html)
 :::
 
 ## define
 
-- Type: `Object|Function`
-- Default: undefined
+- 类型: `Object|Function`
+- 默认值: undefined
 
-Since using [DefinePlugin](https://webpack.js.org/plugins/define-plugin/) via [chainWebpack](#chainwebpack) would be a little complicated:
+由于通过 [chainWebpack](#chainwebpack) 使用 [DefinePlugin](https://webpack.js.org/plugins/define-plugin/) 会有点麻烦：
 
 ```js
 module.exports = {
@@ -82,9 +86,9 @@ module.exports = {
 }
 ```
 
-VuePress specifically opened up a more concise `define` option, note that the values has been automatically processed by `JSON.stringify`.
+VuePress 特别开辟了一个更简洁的 `define` 选项。值得注意的是这些值已自动地被 `JSON.stringify` 处理。
 
-- Object Usage:
+- 对象式:
 
 ```js
 module.exports = {
@@ -94,7 +98,7 @@ module.exports = {
 }
 ```
 
-- Function Usage:
+- 函数式:
 
 ```js
 module.exports = (options, context) => ({
@@ -109,10 +113,10 @@ module.exports = (options, context) => ({
 
 ## alias
 
-- Type: `Object|Function`
-- Default: undefined
+- 类型: `Object|Function`
+- 默认值: undefined
 
-We can set aliases via [chainWebpack](#chainwebpack):
+我们可以通过 [chainWebpack](#chainwebpack) 来配置别名：
 
 ```js
 module.exports = (options, context) => ({
@@ -122,22 +126,22 @@ module.exports = (options, context) => ({
 })
 ```
 
-But `alias` option makes this process more like configuration:
+`alias` 可以使这个流程更像配置：
 
 ```js
 module.exports = (options, context) => ({
   alias: {
-    '@pwd': process.cwd()
+    '@theme': context.themeAPI.themePath
   }
 })
 ```
 
 ## beforeDevServer
 
-- Type: `Function`
-- Default: undefined
+- 类型: `Function`
+- 默认值: undefined
 
-Equivalent to [before](https://webpack.js.org/configuration/dev-server/#devserver-before) in [webpack-dev-server](https://github.com/webpack/webpack-dev-server). you can use it to define custom handlers before all middleware is executed:
+等同于 [webpack-dev-server](https://github.com/webpack/webpack-dev-server) 中的 [before](https://webpack.js.org/configuration/dev-server/#devserver-before) 选项，你可以使用它来自定义你的 devServer，如：
 
 ```js
 module.exports = {
@@ -152,10 +156,10 @@ module.exports = {
 
 ## afterDevServer
 
-- Type: `Function`
-- Default: undefined
+- 类型: `Function`
+- 默认值: undefined
 
-Equivalent to [after](https://webpack.js.org/configuration/dev-server/#devserver-after) in [webpack-dev-server](https://github.com/webpack/webpack-dev-server). you can use it to execute custom middleware after all other middleware:
+等同于 [webpack-dev-server](https://github.com/webpack/webpack-dev-server) 中的 [after](https://webpack.js.org/configuration/dev-server/#devserver-after)，你可以用其在所有中间件的最后去执行一些自定义的中间件：
 
 ```js
 module.exports = {
@@ -168,10 +172,10 @@ module.exports = {
 
 ## extendMarkdown
 
-- Type: `Function`
-- Default: `undefined`
+- 类型: `Function`
+- 默认值: `undefined`
 
-A function to modify default config or apply additional plugins to the [markdown-it](https://github.com/markdown-it/markdown-it) instance used to render source files. Example:
+一个函数，修改内部用于渲染 markdown 文件的 [markdown-it](https://github.com/markdown-it/markdown-it) 实例的配置、或者应用一些额外的插件：
 
 ```js
 module.exports = {
@@ -184,29 +188,29 @@ module.exports = {
 
 ## chainMarkdown
 
-- Type: `Function`
-- Default: `undefined`
+- 类型: `Function`
+- 默认值: `undefined`
 
-Modify the internal markdown config with [markdown-it-chain](https://github.com/ulivz/markdown-it-chain) —— A chaining API like [webpack-chain](https://github.com/mozilla-neutrino/webpack-chain) but for [markdown-it](https://github.com/markdown-it/markdown-it).
+使用 [markdown-it-chain](https://github.com/ulivz/markdown-it-chain) 来修改内部的 markdown 配置。
 
 ```js
 module.exports = {
   chainMarkdown (config) {
-    // Interact with 'options' in new MarkdownIt
-    // Ref: https://markdown-it.github.io/markdown-it/#MarkdownIt.new
+    // 与 new MarkdownIt 的 'options' 互动
+    // 参考: https://markdown-it.github.io/markdown-it/#MarkdownIt.new
     config
       .options
         .link(true)
         .breaks(true)
 
-    // Modify the arguments of internal plugin.
+    // 修改内置插件的参数
     config
       .plugin('anchor')
         .tap(([options]) => [
           Object.assign(options, { permalinkSymbol: '#' })
         ])
 
-    // Add extra markdown-it plugin
+    // 增加额外的插件
     config
       .plugin('sup')
         .use(require('markdown-it-sup'))
@@ -217,17 +221,17 @@ module.exports = {
 }
 ```
 
-**Also see:**
+**参考:**
 
-- [Internal markdown-it plugins in VuePress](https://github.com/vuejs/vuepress/blob/master/packages/%40vuepress/markdown/index.js)
-- [Config plugins](https://github.com/neutrinojs/webpack-chain#config-plugins)
+- [VuePress 的内置 markdown-it 插件](https://github.com/vuejs/vuepress/blob/master/packages/%40vuepress/markdown/index.js)
+- [配置插件](https://github.com/neutrinojs/webpack-chain#config-plugins)
 
 ## enhanceAppFiles
 
-- Type: `String | Array | AsyncFunction`
-- Default: `undefined`
+- 类型: `String | Array | AsyncFunction`
+- 默认值: `undefined`
 
-This option accepts absolute file path(s) pointing to the enhancement file(s), or a function that returns the path(s), which allows you to do some [App Level Enhancements](../guide/basic-config.md#app-level-enhancements).
+此选项接受指向增强文件的绝对文件路径或返回该路径的函数，你可以通过此选项做一些[应用级别的配置](../guide/basic-config.md#应用级别的配置):
 
 ``` js
 import { resolve } from 'path'
@@ -237,7 +241,7 @@ module.exports = {
 }
 ```
 
-This option also supports dynamic code which allows you to do more things with the ability to touch the compilation context:
+此选项还支持动态代码，允许你使用触摸编译上下文的能力来做更多的事：
 
 ```js
 module.exports = (option, context) => {
@@ -256,10 +260,10 @@ module.exports = (option, context) => {
 
 ## clientDynamicModules
 
-- Type: `Function`
-- Default: `undefined`
+- 类型: `Function`
+- 默认值: `undefined`
 
-Sometimes, you may want to generate some client modules at compile time.
+有时，你可能想要在编译期间生成一些在客户端使用的模块：
 
 ```js
 module.exports = (options, context) => ({
@@ -272,7 +276,7 @@ module.exports = (options, context) => ({
 })
 ```
 
-Then you can use this module at client side code by:
+然后你可以在客户端这样使用你的模块：
 
 ``` js
 import { SOURCE_DIR } from '@dynamic/constants'
@@ -280,39 +284,39 @@ import { SOURCE_DIR } from '@dynamic/constants'
 
 ## extendPageData
 
-- Type: `Function`
-- Default: `undefined`
+- 类型: `Function`
+- 默认值: `undefined`
 
-A function used to extend or modify the [$page](../guide/global-computed.md#page) object. This function will be invoking once for each page at compile time.
+一个函数，用于拓展或者修改 [$page](../guide/global-computed.md#page) 对象。这个函数将会在编译器为每个页面执行一次。
 
 ```js
 module.exports = {
   extendPageData ($page) {
     const {
-      _filePath,           // file's absolute path
-      _computed,           // access the client global computed mixins at build time, e.g _computed.$localePath.
-      _content,            // file's raw content string
-      _strippedContent,    // file's content string without frontmatter
-      key,                 // page's unique hash key
-      frontmatter,         // page's frontmatter object
-      regularPath,         // current page's default link (follow the file hierarchy)
-      path,                // current page's real link (use regularPath when permalink does not exist)
+      _filePath,           // 源文件的绝对路径
+      _computed,           // 在构建期访问全局的计算属性，如：_computed.$localePath.
+      _content,            // 源文件的原始内容字符串
+      _strippedContent,    // 源文件剔除掉 frontmatter 的内容字符串
+      key,                 // 页面唯一的 hash key
+      frontmatter,         // 页面的 frontmatter 对象
+      regularPath,         // 当前页面遵循文件层次结构的默认链接
+      path,                // 当前页面的实际链接（在 permalink 不存在时，使用 regularPath ）
     } = $page
-
+   
     // 1. Add extra fields.
     $page.xxx = 'xxx'
-
+    
     // 2. Change frontmatter.
     frontmatter.sidebar = 'auto'
   }
 }
 ```
 
-::: warning Note
-These fields starting with an `_` means you can only access them during build time.
+::: warning 注意
+那些以 `_` 开头的字段意味着你只能在编译期访问。
 :::
 
-e.g.
+例子：
 
 ``` js
 module.exports = {
@@ -322,17 +326,17 @@ module.exports = {
 }
 ```
 
-Then you can use this value via `this.$page.size` in any Vue component.
+然后你可以在任意的 Vue 中通过 `this.$page.size` 来访问这个变量。
 
 ## clientRootMixin
 
-- Type: `String`
-- Default: `undefined`
+- 类型: `String`
+- 默认值: `undefined`
 
-A path to the mixin file which allow you to control the life cycle of root component.
+指向 `mixin` 文件的路径，它让你你可以控制根组件的生命周期：
 
 ``` js
-// plugin's entry
+// 插件的入口
 const path = require('path')
 
 module.exports = {
@@ -350,10 +354,10 @@ export default {
 
 ## additionalPages
 
-- Type: `Array|AsyncFunction`
-- Default: `undefined`
+- 类型: `Array|AsyncFunction`
+- 默认值: `undefined`
 
-Add a page pointing to a markdown file:
+增加一个指向某个 markdown 文件的页面：
 
 ```js
 const path = require('path')
@@ -368,13 +372,13 @@ module.exports = {
 }
 ```
 
-Add a page with explicit content:
+或增加一个具有明确内容的页面：
 
 ```js
 module.exports = {
   async additionalPages () {
-    // Note that VuePress doesn't have request library built-in
-    // you need to install it yourself.
+    // 注意 VuePress 没有任何内置的请求库，
+    // 你需要自己安装它。
     const rp = require('request-promise')
     const content = await rp('https://raw.githubusercontent.com/vuejs/vuepress/master/CHANGELOG.md')
     return [
@@ -387,7 +391,7 @@ module.exports = {
 }
 ```
 
-Add a pure route:
+或增加一个纯粹的路由：
 
 ```js
 module.exports = {
@@ -404,10 +408,10 @@ module.exports = {
 
 ## globalUIComponents
 
-- Type: `Array|String`
-- Default: `undefined`
+- 类型: `Array|String`
+- 默认值: `undefined`
 
-You might want to inject some global UI fixed somewhere on the page, e.g. `back-to-top`, `popup`. In VuePress, **a global UI is a Vue component**, you can directly define the component's name(s) in this option, e.g.
+你可能想注入某些全局的 UI，并固定在页面中的某处，如  `back-to-top`, `popup`。在 VuePress 中，**一个全局 UI 就是一个 Vue 组件。**你可以直接配置该全局组件的名称，如：
 
 ``` js
 module.exports = {
@@ -418,7 +422,7 @@ module.exports = {
 }
 ```
 
-Then, VuePress will automatically inject these components behind the layout component:
+VuePress 将会自动将这些组件注入到布局组件的隔壁：
 
 ```html
 <div id="app">
@@ -426,16 +430,16 @@ Then, VuePress will automatically inject these components behind the layout comp
   <div class="global-ui">
     <Component-1/>
     <Component-2/>
-  </div>
+</div>
 </div>
 ```
 
 ## extendCli
 
-- Type: `function`
-- Default: `undefined`
+- 类型: `function`
+- 默认值: `undefined`
 
-Register a extra command to enhance the CLI of vuepress. The function will be called with a [CAC](https://github.com/cacjs/cac)'s instance as the first argument.
+注册一个额外的 command 来增强 vuepress 的 CLI。这个函数将会以一个 [CAC](https://github.com/cacjs/cac) 的实例作为第一个参数被调用。
 
 ```js
 module.exports = {
@@ -450,8 +454,9 @@ module.exports = {
 }
 ```
 
-Now you can use `vuepress info [targetDir]` a in your project!
+现在你可以在你项目中使用 `vuepress info [targetDir]` 了！
 
 ::: tip
-Note that a custom command registered by a plugin requires VuePress to locate your site configuration like `vuepress dev` and `vuepress build`, so when developing a command, be sure to lead the user to pass `targetDir` as an CLI argument.
+值得注意的是，一个自定义的 command 需要 VuePress 像 `vuepress dev` 或 `vuepress build` 去定位到你的站点配置，所以在开发一个 command 时，请确保引导用户去传入 `targetDir` 作为 CLI 参数的一部分。
 :::
+

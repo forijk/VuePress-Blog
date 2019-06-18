@@ -2,9 +2,9 @@
 metaTitle: Configuration | Theme
 ---
 
-# Theme Configuration
+# 主题的配置
 
-As with plugins, the theme configuration file `themeEntry` should export a `plain JavaScript object`(`#1`). If the plugin needs to take options, it can be a function that exports a plain object(`#2`). The function will be called with the `siteConfig.themeConfig` as the first argument, along with [ctx](../plugin/context-api.md) which provides some compile-time metadata.
+和插件几乎一样，主题的配置文件 `themeEntry` 应该导出一个普通的 JavaScript 对象（`#1`），它也可以是一个返回对象的函数（`#2`），这个函数接受用户在 `siteConfig.themeConfig` 为第一个参数、包含编译期上下文的 [ctx](../plugin/context-api.md) 对象作为第二个参数。
 
 ``` js
 // #1
@@ -22,50 +22,49 @@ module.exports = (themeConfig, ctx) => {
 }
 ```
 
-
 ::: tip
-1. You should see the difference between `themeEntry` and `themeConfig`, the former is a configuration for ths theme itself, which is provided by VuePress. the latter is the user's configuration for the theme, which is implemented by the currently used theme, e.g. [Default Theme Config](./default-theme-config.md).
-
-2. In addition to the options listed in this section, `themeEntry` also supports all [Option API](../plugin/option-api.md) and [Life Cycle](../plugin/life-cycle.md) supported by plugins.
+1. 你应该能看到 `themeEntry` 和 `themeConfig` 的区别，前者是一个主题本身的配置，这些配置由 VuePress 本身提供；而后者则是用户对主题的配置，这些配置选项则由当前使用的主题来实现，如 [默认主题配置](./default-theme-config.md)。
+2. 除了本节列出的选项，`themeEntry` 也支持插件支持的所有 [配置选项](../plugin/option-api.md) 和 [生命周期](../plugin/life-cycle.md)。
 :::
 
 ## plugins
 
-- Type: `Array|Object`
-- Default: undefined
+- 类型: `Array|Object`
+- 默认值: undefined
 
-**Also see:**
+**参考:**
 
-- [Plugin > Using a Plugin](../plugin/using-a-plugin.md).
+- [插件 > 使用插件](../plugin/using-a-plugin.md).
 
 ---
 
-::: warning
-You probably don't need to use following options tagged with <Badge text="Danger Zone" vertical="middle"/> unless you know what you are doing!
+::: warning 注意
+你可能不需要使用下面这些带有 <Badge text="Danger Zone" vertical="middle"/> 的选项，除非你知道你在做什么！
 :::
 
 ## devTemplate <Badge text="Danger Zone"/>
 
-- Type: `String`
-- Default: undefined
+- 类型: `String`
+- 默认值: undefined
 
-HTML template path used in `dev` mode, default template see [here](https://github.com/vuejs/vuepress/blob/master/packages/%40vuepress/core/lib/client/index.dev.html)
+dev 模式下使用的 HTML 模板路径，默认模板见 [这里](https://github.com/vuejs/vuepress/blob/master/packages/%40vuepress/core/lib/client/index.dev.html)。
 
 ## ssrTemplate <Badge text="Danger Zone"/>
 
-- Type: `String`
-- Default: undefined
+- 类型: `String`
+- 默认值: undefined
 
-HTML template path used in `build` mode, default template see [here](https://github.com/vuejs/vuepress/blob/master/packages/%40vuepress/core/lib/client/index.ssr.html)
+build 模式下使用的 HTML 模板路径，默认模板见 [这里](https://github.com/vuejs/vuepress/blob/master/packages/%40vuepress/core/lib/client/index.ssr.html)。
 
-**Also see:**
+**参考:**
 
-- [Vue SSR Guide > template](https://ssr.vuejs.org/api/#template).
+- [Vue SSR Guide > template](https://ssr.vuejs.org/zh/api/#createrenderer).
+
 
 ## extend <Badge text="Danger Zone"/>
 
-- Type: `String`
-- Default: undefined
+- 类型: `String`
+- 默认值: undefined
 
 ```js
 module.exports = {
@@ -73,17 +72,17 @@ module.exports = {
 }
 ```
 
-VuePress provides the ability to inherit one theme from another. VuePress will follow the concept of `override` and automatically help you prioritize various thematic attributes, e.g. styles and layout components.
+VuePress 支持一个主题继承于另一个主题。VuePress 将遵循 `override` 的理念自动帮你解决各种主题属性（如样式、布局组件）的优先级。
 
-**Also see:**
+**参考:**
 
-- [Theme Inheritance](./inheritance.md)
-- [Design Concepts of VuePress 1.x](../miscellaneous/design-concepts.md)
+- [主题继承](./inheritance.md)
+- [例子: `@vuepress/theme-vue`](https://github.com/vuejs/vuepress/tree/master/packages/@vuepress/theme-vue)
 
 ## globalLayout <Badge text="Danger Zone"/>
 
-- Type: `String`
-- Default: undefined
+- 类型: `String`
+- 默认值: undefined
 
 ```js
 // themePath/index.js
@@ -92,9 +91,10 @@ module.exports = {
 }
 ```
 
-Global layout component is a component responsible for the global layout strategy. The [default global layout](https://github.com/vuejs/vuepress/blob/master/packages/%40vuepress/core/lib/app/components/GlobalLayout.vue) will help you render different layouts according to [$frontmatter.layout](../guide/frontmatter.md#layout), so in most cases you do not need to configure this option.
+全局布局组件是负责管理全局布局方案的一个组件，VuePress [默认的 globalLayout](https://github.com/vuejs/vuepress/blob/master/packages/%40vuepress/core/lib/app/components/GlobalLayout.vue)会帮你根据 [$frontmatter.layout](../guide/frontmatter.md#layout) 来渲染不同的布局，所以大部分情况下你不要配置此选项。
 
-For example, when you want to set a global header and footer for your theme, you can do this:
+举例来说，当你想为当前主题设置全局的 header 和 footer 时，你可以这样做：
+
   
 ```vue
 <!-- themePath/layouts/GlobalLayout.vue -->
@@ -112,7 +112,7 @@ export default {
     layout () {
       if (this.$page.path) {
         if (this.$frontmatter.layout) {
-          // You can also check whether layout exists first as the default global layout does.
+          // 你也可以像默认的 globalLayout 一样首先检测 layout 是否存在
           return this.$frontmatter.layout
         }
         return 'Layout'

@@ -1,46 +1,50 @@
-# Getting Started
+# 快速上手
 
-::: warning COMPATIBILITY NOTE
-VuePress requires Node.js >= 8.
+::: warning 注意
+请确保你的 Node.js 版本 >= 8。
 :::
 
-## Global Installation
+## 全局安装
 
-If you just want to play around with VuePress, you can install it globally:
+如果你只是想尝试一下 VuePress，你可以全局安装它：
 
 ``` bash
-# install globally
-yarn global add vuepress@next # OR npm install -g vuepress@next
+# 安装
+yarn global add vuepress@next # 或者：npm install -g vuepress@next
 
-# create a markdown file
-echo '# Hello VuePress' > README.md
+# 新建一个 markdown 文件
+echo '# Hello VuePress!' > README.md
 
-# start writing
-vuepress dev
+# 开始写作
+vuepress dev .
 
-# build
-vuepress build
+# 构建静态文件
+vuepress build .
 ```
 
-## Inside an Existing Project
+## 现有项目
 
-If you have an existing project and would like to keep documentation inside the project, you should install VuePress as a local dependency. This setup also allows you to use CI or services like Netlify for automatic deployment on push.
+如果你想在一个现有项目中使用 VuePress，同时想要在该项目中管理文档，则应该将 VuePress 安装为本地依赖。作为本地依赖安装让你可以使用持续集成工具，或者一些其他服务（比如 Netlify）来帮助你在每次提交代码时自动部署。
 
 ``` bash
-# install as a local dependency
-yarn add -D vuepress@next # OR npm install -D vuepress@next
+# 将 VuePress 作为一个本地依赖安装
+yarn add -D vuepress@next # 或者：npm install -D vuepress@next
 
-# create a docs directory
+# 新建一个 docs 文件夹
 mkdir docs
-# create a markdown file
-echo '# Hello VuePress' > docs/README.md
+
+# 新建一个 markdown 文件
+echo '# Hello VuePress!' > docs/README.md
+
+# 开始写作
+npx vuepress dev docs
 ```
 
 ::: warning
-It is currently recommended to use [Yarn](https://yarnpkg.com/en/) instead of npm when installing VuePress into an existing project that has webpack 3.x as a dependency. Npm fails to generate the correct dependency tree in this case.
+如果你的现有项目依赖了 webpack 3.x，推荐使用 [Yarn](https://yarnpkg.com/en/) 而不是 npm 来安装 VuePress。因为在这种情形下，npm 会生成错误的依赖树。
 :::
 
-Then, add some scripts to `package.json`:
+接着，在 `package.json` 里加一些脚本:
 
 ``` json
 {
@@ -51,16 +55,16 @@ Then, add some scripts to `package.json`:
 }
 ```
 
-You can now start writing with:
+然后就可以开始写作了:
 
 ``` bash
-yarn docs:dev # OR npm run docs:dev
+yarn docs:dev # 或者：npm run docs:dev
 ```
 
-To generate static assets, run:
+要生成静态的 HTML 文件，运行：
 
 ``` bash
-yarn docs:build # Or npm run docs:build
+yarn docs:build # 或者：npm run docs:build
 ```
 
-By default, the built files will be in `.vuepress/dist`, which can be configured via the `dest` field in `.vuepress/config.js`. The built files can be deployed to any static file server. See [Deployment Guide](deploy.md) for guides on deploying to popular services.
+默认情况下，文件将会被生成在 `.vuepress/dist`，当然，你也可以通过 `.vuepress/config.js` 中的 `dest` 字段来修改，生成的文件可以部署到任意的静态文件服务器上，参考 [部署](deploy.md) 来了解更多。

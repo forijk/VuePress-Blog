@@ -1,9 +1,9 @@
-# Life Cycle
+# 生命周期
 
 ## ready
 
-- Type: `AsyncFunction`
-- Scope：`dev|build`
+- 类型: `AsyncFunction`
+- 作用域：`dev|build`
 
 ```js
 module.exports = {
@@ -13,8 +13,9 @@ module.exports = {
 }
 ```
 
-::: tip
-The `ready` hook is executed after the application is initialized and before some specific functional APIs are executed. These functional APIs include:
+::: tip 提示
+
+`ready` 钩子在应用初始化之后，并在某些特定的函数式 API 执行之前执行。这些函数式 API 包括：
 
 - [clientDynamicModules](./option-api.md#clientdynamicmodules)
 - [enhanceAppFiles](./option-api.md#enhanceappfiles)
@@ -23,8 +24,8 @@ The `ready` hook is executed after the application is initialized and before som
 
 ## updated
 
-- Type: `Function`
-- Scope：`dev`
+- 类型: `Function`
+- 作用域：`dev`
 
 ```js
 module.exports = {
@@ -36,10 +37,10 @@ module.exports = {
 
 ## generated
 
-- Type: `AsyncFunction`
-- Scope：`build`
+- 类型: `AsyncFunction`
+- 作用域：`build`
 
- Called when a (production) build finishes, with an array of generated page HTML paths.
+在生产环境的构建结束后被调用，生成的页面的路径数组将作为该函数的第一个参数。
 
 ``` js
 module.exports = {

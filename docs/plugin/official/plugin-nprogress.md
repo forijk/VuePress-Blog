@@ -1,20 +1,20 @@
 ---
 title: nprogress
-metaTitle: Nprogress Plugin | VuePress
+metaTitle: Nprogress 插件 | VuePress
 ---
 
 # [@vuepress/plugin-nprogress](https://github.com/vuejs/vuepress/tree/master/packages/%40vuepress/plugin-nprogress)
 
-> A progress bar plugin based on [nprogress](https://github.com/rstacruz/nprogress). <Badge text="1.0.0-alpha.31+"/>
+> 一个基于 [nprogress](https://github.com/rstacruz/nprogress) 的进度条插件。<Badge text="1.0.0-alpha.31+"/>
 
-## Install
+## 安装
 
 ```bash
 yarn add -D @vuepress/plugin-nprogress@next
-# OR npm install -D @vuepress/plugin-nprogress@next
+# 或者 npm install -D @vuepress/plugin-nprogress@next
 ```
 
-## Usage
+## 使用
 
 ```javascript
 module.exports = {
@@ -22,18 +22,18 @@ module.exports = {
 }
 ```
 
-## Custom color
+## 自定义颜色
 
-Set `$nprogressColor` in your __site__ or __theme__ `palette.styl` file to change the color of the progress bar (default is `$accentColor`).
+在你的 __site__ 或 __theme__ 的 `palette.styl` 文件中设置 `$nprogressColor` 来改变进度条的颜色（默认使用 `$accentColor`）。
 
 ```stylus
 // .vuepress/styles/palette.styl
-// or
+// 或者
 // .vuepress/theme/styles/palette.styl
 
 $nprogressColor = red
 ```
 
-**Also see:**
+**参考：**
 
-- [Config Reference > Styling](../../config/README.md#styling)
+- [配置 > Styling](../../config/README.md#styling)

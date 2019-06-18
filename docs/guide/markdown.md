@@ -1,16 +1,16 @@
-# Markdown Extensions
+# Markdown 拓展
 
 ## Header Anchors
 
-Headers automatically get anchor links applied. Rendering of anchors can be configured using the [`markdown.anchor`](../config/README.md#markdown-anchor) option.
+所有的标题将会自动地应用 anchor 链接，anchor 的渲染可以通过 [`markdown.anchor`](../config/README.md#markdown-anchor) 来配置。
 
-## Links
+## 链接
 
-### Internal Links
+### 内部链接
 
-Internal links are converted to `<router-link>` for SPA navigation. Also, every `README.md` or `index.md` contained in each sub-directory will automatically be converted to `index.html`, with corresponding url `/`.
+网站内部的的链接，将会被转换成 `<router-link>` 用于 SPA 导航。同时，站内的每一个文件夹下的 `README.md` 或者 `index.md` 文件都会被自动编译为 `index.html`，对应的链接将被视为 `/`。
 
-Given the following directory structure:
+以如下的文件结构为例：
 
 ```
 .
@@ -25,36 +25,36 @@ Given the following directory structure:
    └─ four.md
 ```
 
-And providing you are in `foo/one.md`:
+假设你现在在 `foo/one.md` 中：
 
-```md
-[Home](/) <!-- Sends the user to the root README.md -->
-[foo](/foo/) <!-- Sends the user to index.html of directory foo -->
-[foo heading](./#heading) <!-- Anchors user to a heading in the foo README file -->
-[bar - three](../bar/three.md) <!-- You can append .md (recommended) -->
-[bar - four](../bar/four.html) <!-- Or you can append .html -->
+``` md
+[Home](/) <!-- 跳转到根部的 README.md -->
+[foo](/foo/) <!-- 跳转到 foo 文件夹的 index.html -->
+[foo heading](./#heading) <!-- 跳转到 foo/index.html 的特定标题位置 -->
+[bar - three](../bar/three.md) <!-- 具体文件可以使用 .md 结尾（推荐） -->
+[bar - four](../bar/four.html) <!-- 也可以用 .html -->
 ```
 
-### Redirection for URLs <Badge text="1.0.0-alpha.37"/>
+### 链接的重定向 <Badge text="1.0.0-alpha.37"/>
 
-VuePress supports redirecting to clean links. If a link `/foo` is not found, VuePress will look for a existing `/foo/` or `/foo.html`. Conversely, when one of `/foo/` or `/foo.html` is not found, VuePress will also try the other. With this feature, we can customize your website's urls with the official plugin [vuepress-plugin-clean-urls](https://vuepress.github.io/plugins/clean-urls/).
+VuePress 支持重定向到干净链接。如果一个链接 `/foo` 找不到，VuePress 会自行寻找一个可用的 `/foo/` 或 `/foo.html`。反过来，当 `/foo/` 或 `/foo.html` 中的一个找不到时，VuePress 也会尝试寻找另一个。借助这种特性，我们可以通过官方插件 [vuepress-plugin-clean-urls](https://vuepress.github.io/plugins/clean-urls/) 定制你的网站路径。
 
-::: tip
-Regardless of whether the permalink and clean-urls plugins are used, your relative path should be defined by the current file structure. In the above example, even though you set the path of `/foo/one.md` to `/foo/one/`, you should still access `/foo/two.md` via `./two.md`.
+::: tip 注意
+无论是否使用了 permalink 和 clean-urls 插件，你的相对路径都应该依赖于当前的文件结构来定义。在上面的例子中，即使你将 `/foo/one.md` 的路径设为了 `/foo/one/`，你依然应该通过 `./two.md` 来访问 `/foo/two.md`。
 :::
 
-### External Links
+### 外部链接
 
-Outbound links automatically gets `target="_blank" rel="noopener noreferrer"`:
+外部的链接将会被自动地设置为  `target="_blank" rel="noopener noreferrer"`:
 
 - [vuejs.org](https://vuejs.org)
 - [VuePress on GitHub](https://github.com/vuejs/vuepress)
 
-You can customize the attributes added to external links by setting [config.markdown.externalLinks](../config/README.md#markdown-externallinks).
+你可以自定义通过配置 [config.markdown.externalLinks](../config/README.md#markdown-externallinks) 来自定义外部链接的特性。
 
 ## Front Matter
 
-[YAML front matter](https://jekyllrb.com/docs/frontmatter/) is supported out of the box:
+VuePress 提供了对 [YAML front matter](https://jekyllrb.com/docs/frontmatter/) 开箱即用的支持:
 
 ``` yaml
 ---
@@ -63,13 +63,13 @@ lang: en-US
 ---
 ```
 
-This data will be available to the rest of the page, along with all custom and theming components.
+这些数据可以在当前 markdown 的正文，或者是任意的自定义或主题组件中使用。
 
-For more details, check out the [Front Matter](./frontmatter.md) page.
+想了解更多，请移步 [Front Matter](./frontmatter.md)。
 
-## GitHub-Style Tables
+## GitHub 风格的表格
 
-**Input**
+**输入**
 
 ```
 | Tables        | Are           | Cool  |
@@ -79,7 +79,7 @@ For more details, check out the [Front Matter](./frontmatter.md) page.
 | zebra stripes | are neat      |    $1 |
 ```
 
-**Output**
+**输出**
 
 | Tables        | Are           | Cool  |
 | ------------- |:-------------:| -----:|
@@ -87,37 +87,35 @@ For more details, check out the [Front Matter](./frontmatter.md) page.
 | col 2 is      | centered      |   $12 |
 | zebra stripes | are neat      |    $1 |
 
-## Emoji :tada:
+## Emoji
 
-**Input**
+**输入**
 
 ```
 :tada: :100:
 ```
 
-**Output**
+**输出**
 
 :tada: :100:
 
-A list of all emojis available can be found [here](https://github.com/markdown-it/markdown-it-emoji/blob/master/lib/data/full.json).
+## 目录
 
-## Table of Contents
-
-**Input**
+**输入**
 
 ```
 [[toc]]
 ```
 
-**Output**
+**输出**
 
 [[toc]]
 
-Rendering of TOC can be configured using the [`markdown.toc`](../config/README.md#markdown-toc) option.
+目录（Table of Contents）的渲染可以通过  [`markdown.toc`](../config/README.md#markdown-toc) 选项来配置。
 
-## Custom Containers <Badge text="default theme"/>
+## 自定义容器 <Badge text="默认主题"/>
 
-**Input**
+**输入**
 
 ```
 ::: tip
@@ -133,7 +131,7 @@ This is a dangerous warning
 :::
 ```
 
-**Output**
+**输出**
 
 ::: tip
 This is a tip
@@ -144,10 +142,10 @@ This is a warning
 :::
 
 ::: danger
-This is a dangerous warning
+This is a dangerous thing
 :::
 
-You can also customize the title of the block:
+你也可以自定义块中的标题：
 
 ```
 ::: danger STOP
@@ -159,15 +157,15 @@ Danger zone, do not proceed
 Danger zone, do not proceed
 :::
 
-**Also see:**
+**参考:**
 
 - [vuepress-plugin-container](https://vuepress.github.io/plugins/container/)
 
-## Syntax Highlighting in Code Blocks
+## 代码块中的语法高亮
 
-VuePress uses [Prism](https://prismjs.com/) to highlight language syntax in markdown code blocks, using coloured text. Prism supports a wide variety of programming languages. All you need to do is append a valid language alias to the beginning backticks for the code block:
+VuePress 使用了 [Prism](https://prismjs.com/) 来为 markdown 中的代码块实现语法高亮。Prism 支持大量的编程语言，你需要做的只是在代码块的开始倒勾中附加一个有效的语言别名：
 
-**Input**
+**输入**
 
 ````
 ``` js
@@ -178,7 +176,7 @@ export default {
 ```
 ````
 
-**Output**
+**输出**
 
 ``` js
 export default {
@@ -187,7 +185,7 @@ export default {
 }
 ```
 
-**Input**
+**输入**
 
 ````
 ``` html
@@ -202,7 +200,7 @@ export default {
 ```
 ````
 
-**Output**
+**输出**
 
 ``` html
 <ul>
@@ -215,14 +213,15 @@ export default {
 </ul>
 ```
 
-Check out [the list of valid languages](https://prismjs.com/#languages-list) on the Prism website.
+在 Prism 的网站上查看 [合法的语言列表](https://prismjs.com/#languages-list)。
 
-## Line Highlighting in Code Blocks
 
-**Input**
+## 代码块中的行高亮
+
+**输入**
 
 ````
-``` js{4}
+``` js {4}
 export default {
   data () {
     return {
@@ -233,7 +232,7 @@ export default {
 ```
 ````
 
-**Output**
+**输出**
 
 ``` js{4}
 export default {
@@ -245,30 +244,30 @@ export default {
 }
 ```
 
-## Line Numbers
+## 行号
 
-You can enable line numbers for each code blocks via config:
+你可以通过配置来为每个代码块显示行号：
 
 ``` js
 module.exports = {
   markdown: {
     lineNumbers: true
   }
-}
+}  
 ```
 
 <!-- TODO Support line numbers for specific fence block -->
 
-- Demo:
+- 示例:
 
 <picture>
   <source srcset="/line-numbers-desktop.png" media="(min-width: 719px)">
-  <img src="/line-numbers-desktop.png" class="line-numbers-desktop-snap" alt="Image">
+  <img class="line-numbers-desktop-snap" alt="Image">
 </picture>
 
 <picture>
   <source srcset="/line-numbers-mobile.gif" media="(max-width: 719px)">
-  <img src="/line-numbers-mobile.gif" class="line-numbers-mobile-snap" alt="Image">
+  <img class="line-numbers-mobile-snap" alt="Image">
 </picture>
 
 <style>
@@ -289,48 +288,47 @@ module.exports = {
   }
 </style>
 
-## Import Code Snippets <Badge text="beta" type="warn"/>
+## 导入代码段 <Badge text="beta" type="warn"/>
 
-You can import code snippets from existing files via following syntax:
+你可以通过下述的语法导入已经存在的文件中的代码段：
 
 ``` md
 <<< @/filepath
 ```
 
-It also supports [line highlighting](#line-highlighting-in-code-blocks):
+它也支持 [行高亮](#代码块中的行高亮)：
 
 ``` md
-<<< @/filepath{highlightLines}
+<<< @/filepath{highlightLines} 
 ```
 
-**Input**
+**输入**
 
-``` md
+```
 <<< @/../@vuepress/markdown/__tests__/fragments/snippet.js{2}
 ```
 
-**Output**
+**输出**
 
 <<< @/../@vuepress/markdown/__tests__/fragments/snippet.js{2}
 
-::: tip
-Since the import of the code snippets will be executed before webpack compilation, you can't use the path alias in webpack. The default value of `@` is `process.cwd()`.
+::: tip 注意
+由于代码段的导入将在 webpack 编译之前执行，因此你无法使用 webpack 中的路径别名，此处的 `@` 默认值是 `process.cwd()`。
 :::
 
+## 进阶配置
 
-## Advanced Configuration
-
-VuePress uses [markdown-it](https://github.com/markdown-it/markdown-it) as the markdown renderer. A lot of the extensions above are implemented via custom plugins. You can further customize the `markdown-it` instance using the `markdown` option in `.vuepress/config.js`:
+VuePress 使用 [markdown-it](https://github.com/markdown-it/markdown-it) 来渲染 Markdown，上述大多数的拓展也都是通过自定义的插件实现的。想要进一步的话，你可以通过 `.vuepress/config.js` 的 `markdown` 选项，来对当前的 `markdown-it` 实例做一些自定义的配置：
 
 ``` js
 module.exports = {
   markdown: {
-    // options for markdown-it-anchor
+    // markdown-it-anchor 的选项
     anchor: { permalink: false },
-    // options for markdown-it-toc
+    // markdown-it-toc 的选项
     toc: { includeLevel: [1, 2] },
     extendMarkdown: md => {
-      // use more markdown-it plugins!
+      // 使用更多的 markdown-it 插件!
       md.use(require('markdown-it-xxx'))
     }
   }

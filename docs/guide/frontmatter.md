@@ -1,6 +1,6 @@
 # Front Matter
 
-Any markdown file that contains a YAML front matter block will be processed by [gray-matter](https://github.com/jonschlinkert/gray-matter). The front matter must be the first thing in the markdown file and must take the form of valid YAML set between triple-dashed lines. Here is a basic example:
+任何包含 YAML front matter 的 Markdown 文件都将由 [gray-matter](https://github.com/jonschlinkert/gray-matter) 处理。front matter 必须是 markdown 文件中的第一部分，并且必须采用在三点划线之间书写的有效的 YAML。 这是一个基本的例子：
 
 ```markdown
 ---
@@ -9,17 +9,17 @@ lang: en-US
 ---
 ```
 
-Between these triple-dashed lines, you can set predefined variables (see [below](#predefined-variables) for a reference), or even create custom ones of your own. These variables will then be available to you to access using <code>[$frontmatter](./global-computed.md#frontmatter)</code> at the rest of the page, plus all custom and theming components.
+在这些三条虚线之间，你可以设置预定义变量（参见[下面](#预定义变量)），甚至可以创建自己的自定义变量。 然后，您可以使用 <code> [$frontmatter](global-computed.md#frontmatter)</code> 在页面的其余部分、以及所有的自定义和主题组件访问这些变量。
 
 ::: tip
-Front matter variables are **optional** in VuePress.
+在 VuePress 中，Front matter 是 **可选的**。
 :::
 
-## Alternative Front Matter Formats
+## 其他格式的 Front Matter
 
-In addition, VuePress also supports JSON or [TOML](https://github.com/toml-lang/toml) front matter.
+除了 YAML 之外，VuePress 也支持 JSON 或者 [TOML](https://github.com/toml-lang/toml) 格式的 front matter。
 
-JSON front matter needs to start and end in curly braces:
+JSON front matter 需要以花括号开头和结尾：
 
 ```
 ---
@@ -30,7 +30,7 @@ JSON front matter needs to start and end in curly braces:
 ---
 ```
 
-TOML front matter needs to be explicitly marked as TOML:
+TOML front matter 需要显式地标注为 TOML：
 
 ```
 ---toml
@@ -39,57 +39,56 @@ lang = "en-US"
 ---
 ```
 
-
-## Predefined Variables
+## 预定义变量
 
 ### title
 
-- Type: `string`
-- Default: `h1_title || siteConfig.title`
+- 类型: `string`
+- 默认值: `h1_title || siteConfig.title`
 
-Title of current page.
+当前页面的标题。
 
 ### lang
 
-- Type: `string`
-- Default: `en-US`
+- 类型: `string`
+- 默认值: `en-US`
 
-Language of current page.
+当前页面的语言。
 
 ### description
 
-- Type: `string`
-- Default: `siteConfig.description`
+- 类型: `string`
+- 默认值: `siteConfig.description`
 
-Description of current page.
+当前页面的描述。
 
 ### layout
 
-- Type: `string`
-- Default: `Layout`
+- 类型: `string`
+- 默认值: `Layout`
 
-Set the layout component of the current page.
+设置当前页面的布局组件。
 
 ### permalink
 
-- Type: `string`
-- Default: `siteConfig.permalink`
+- 类型: `string`
+- 默认值: `siteConfig.permalink`
 
-Refer to: [Permalinks](./permalinks.md).
+参考: [Permalinks](./permalinks.md).
 
 ### metaTitle
 
-- Type: `string`
-- Default: <code>\`${page.title} | ${siteConfig.title}\`</code>
+- 类型: `string`
+- 默认值: <code>\`${page.title} | ${siteConfig.title}\`</code>
 
-Override the default meta title.
+重写默认的 meta title。
 
 ### meta
 
-- Type: `array`
-- Default: `undefined`
+- 类型: `array`
+- 默认值: `undefined`
 
-Specify extra meta tags to be injected:
+指定额外的要注入的 meta 标签：
 
 ``` yaml
 ---
@@ -101,18 +100,18 @@ meta:
 ---
 ```
 
-## Predefined Variables Powered By Default Theme
+## 默认主题的预定义变量
 
 ### navbar
 
-- Type: `boolean`
-- Default: `undefined`
+- 类型: `boolean`
+- 默认值: `undefined`
 
-See: [Default Theme Config > Disable the Navbar](../theme/default-theme-config.md#disable-the-navbar).
+参考: [默认值 Theme Config > Disable the Navbar](../theme/default-theme-config.md#禁用导航栏).
 
 ### sidebar
 
-- Type: `boolean|'auto'`
-- Default: `undefined`
+- 类型: `boolean|'auto'`
+- 默认值: `undefined`
 
-See: [Default Theme Config > Sidebar](../theme/default-theme-config.md#sidebar).
+参考: [默认值 Theme Config > Sidebar](../theme/default-theme-config.md#侧边栏).

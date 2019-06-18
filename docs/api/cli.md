@@ -1,6 +1,6 @@
-# Command Line Interface
+# 命令行接口
 
-## Usage
+## 基本用法
 
 ```bash
 vuepress <command> targetDir [options]
@@ -8,48 +8,44 @@ vuepress <command> targetDir [options]
 
 ## build
 
-Build dir as a static site.
+在指定的目录生成一个静态站点。
 
 ### -p, --port `<port>`
-See [port](../config/README.md#port).
+查看 [port](../config/README.md#port)。
 
 ### -t, --temp `<temp>`
-See [temp](../config/README.md#temp).
+查看 [temp](../config/README.md#temp)。
 
 ### -c, --cache `[cache]`
 ### -no--cache
-See [cache](../config/README.md#cache).
+查看 [cache](../config/README.md#cache)。
 
 ### --dest `<dest>`
-See [dest](../config/README.md#dest).
+查看 [dest](../config/README.md#dest)。
 
 ### --debug
-Start development server in debug mode.
+以调试模式启动开发服务器。
 
 ### --silent
-Start development server in silent mode.
+以安静模式启动开发服务器。
 
 ## dev
 
-Start a development server. All options from `vuepress build` are available. And there are several options specifically for dev:
+启动一个开发服务器。来自 `vuepress build` 的所有选项都可用。除此以外，还有几个专门针对 dev 的选项：
 
 ### --host `<host>`
-See [host](../config/README.md#host).
+查看 [host](../config/README.md#host)。
 
 ### --open
-Open browser when ready.
+当服务端准备就绪时自动打开浏览器。
 
 ### --no-clear-screen
-do not clear screen when dev server is ready.
+当 dev server 就绪时不清除屏幕。
 
 ## eject
 
-Copy the default theme into `.vuepress/theme` for customization.
+将默认主题复制到 `.vuepress/theme` 目录，以供自定义。
 
-## info
+## 更多指令
 
-Shows debugging information about the local environment.
-
-## more commands
-
-You can create a custom command with [extendCli](../plugin/option-api.md#extendcli).
+你可以使用 [extendCli](../plugin/option-api.md#extendcli) 来创建自定义命令。

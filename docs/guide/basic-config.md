@@ -1,8 +1,8 @@
-# Configuration
+# 基本配置
 
-## Config File
+## 配置文件
 
-Without any configuration, the page is pretty minimal, and the user has no way to navigate around the site. To customize your site, let's first create a `.vuepress` directory inside your docs directory. This is where all VuePress-specific files will be placed in. Your project structure is probably like this:
+如果没有任何配置，这个网站将会是非常局限的，用户也无法在你的网站上自由导航。为了更好地自定义你的网站，让我们首先在你的文档目录下创建一个 `.vuepress` 目录，所有 VuePress 相关的文件都将会被放在这里。你的项目结构可能是这样：
 
 ```
 .
@@ -13,7 +13,7 @@ Without any configuration, the page is pretty minimal, and the user has no way t
 └─ package.json
 ```
 
-The essential file for configuring a VuePress site is `.vuepress/config.js`, which should export a JavaScript object:
+一个 VuePress 网站必要的配置文件是 `.vuepress/config.js`，它应该导出一个 JavaScript 对象：
 
 ``` js
 module.exports = {
@@ -22,35 +22,35 @@ module.exports = {
 }
 ```
 
-If you've got the dev server running, you should see the page now has a header with the title and a search box. VuePress comes with built-in headers-based search - it automatically builds a simple search index from the title, `h2` and `h3` headers from all the pages.
+对于上述的配置，如果你运行起 dev server，你应该能看到一个页面，它包含一个页头，里面包含一个标题和一个搜索框。VuePress 内置了基于 headers 的搜索 —— 它会自动为所有页面的标题、`h2` 和 `h3` 构建起一个简单的搜索索引。
 
-Consult the [Config Reference](../config/README.md) for a full list of options.
+参见 [配置](../config/README.md) 来查看所有可配置的选项。
 
-::: tip Alternative Config Formats
-You can also use YAML (`.vuepress/config.yml`) or TOML (`.vuepress/config.toml`) formats for the configuration file.
+::: tip 其他配置格式
+你也可以使用 YAML (`.vuepress/config.yml`) 或是 TOML (`.vuepress/config.toml`) 格式的配置文件。
 :::
 
-## Theme Configuration
+## 主题配置
 
-A VuePress theme is responsible for all the layout and interactivity details of your site. VuePress ships with a default theme (you are looking at it right now) which is designed for technical documentation. It exposes a number of options that allow you to customize the navbar, sidebar and homepage, etc. For details, check out the [Default Theme Config](../theme/default-theme-config.md) page.
+一个 VuePress 主题应该负责整个网站的布局和交互细节。在 VuePress 中，目前自带了一个默认的主题（正是你现在所看到的），它是为技术文档而设计的。同时，默认主题提供了一些选项，让你可以去自定义导航栏（navbar）、 侧边栏（sidebar）和 首页（homepage） 等，详情请参见 [默认主题](../theme/default-theme-config.md) 。
 
-If you wish to develop a custom theme, see [Writing a theme](../theme/writing-a-theme.md).
+如果你想开发一个自定义主题，可以参考 [自定义主题](../theme/README.md)。
 
-## App Level Enhancements
+## 应用级别的配置
 
-Since the VuePress app is a standard Vue app, you can apply app-level enhancements by creating a file `.vuepress/enhanceApp.js`, which will be imported into the app if it is present. The file should `export default` a hook function which will receive an object containing some app-level values. You can use this hook to install additional Vue plugins, register global components, or add additional router hooks:
+由于 VuePress 是一个标准的 Vue 应用，你可以通过创建一个 `.vuepress/enhanceApp.js` 文件来做一些应用级别的配置，当该文件存在的时候，会被导入到应用内部。`enhanceApp.js` 应该 `export default` 一个钩子函数，并接受一个包含了一些应用级别属性的对象作为参数。你可以使用这个钩子来安装一些附加的 Vue 插件、注册全局组件，或者增加额外的路由钩子等：
 
 ``` js
 export default ({
-  Vue, // the version of Vue being used in the VuePress app
-  options, // the options for the root Vue instance
-  router, // the router instance for the app
-  siteData // site metadata
+  Vue, // VuePress 正在使用的 Vue 构造函数
+  options, // 附加到根实例的一些选项
+  router, // 当前应用的路由实例
+  siteData // 站点元数据
 }) => {
-  // ...apply enhancements to the app
+  // ...做一些其他的应用级别的优化
 }
 ```
 
-**Related:**
+**相关阅读：**
 
-- [App Level Enhancements in Plugin API](../plugin/option-api.md#enhanceappfiles)
+- [插件 API 中的 enhanceApp](../plugin/option-api.md#enhanceappfiles)

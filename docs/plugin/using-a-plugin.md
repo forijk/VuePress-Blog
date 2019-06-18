@@ -1,6 +1,6 @@
-# Using a Plugin
+# 使用插件
 
-You can use plugins by doing some configuration at `.vuepress/config.js`:
+你可以通过在 `.vuepress/config.js` 中做一些配置来使用插件：
 
 ``` js
 module.exports = {
@@ -10,9 +10,9 @@ module.exports = {
 }
 ```
 
-## Use plugins from a dependency
+## 使用来自依赖的插件
 
-A plugin can be published on npm in `CommonJS` format as `vuepress-plugin-xxx`. you can use it:
+一个插件可以在以 `vuepress-plugin-xxx` 的形式发布到 npm，你可以这样使用它：
 
 ``` js
 module.exports = {
@@ -20,9 +20,9 @@ module.exports = {
 }
 ```
 
-## Plugin Shorthand
+## 插件的缩写
 
-If you prefix the plugin with `vuepress-plugin-`, you can use a shorthand to leave out that prefix:
+如果你的插件名以 `vuepress-plugin-` 开头，你可以使用缩写来省略这个前缀：
 
 ``` js
 module.exports = {
@@ -30,7 +30,7 @@ module.exports = {
 }
 ```
 
-Same with:
+和下面等价：
 
 ``` js
 module.exports = {
@@ -38,7 +38,7 @@ module.exports = {
 }
 ```
 
-This also works with [Scoped Packages](https://docs.npmjs.com/misc/scope):
+这也适用于 [Scoped Packages](https://docs.npmjs.com/misc/scope):
 
 ``` js
 module.exports = {
@@ -46,7 +46,7 @@ module.exports = {
 }
 ```
 
-Shorthand:
+等价于:
 
 ``` js
 module.exports = {
@@ -54,15 +54,15 @@ module.exports = {
 }
 ```
 
-::: warning Note
-The plugin whose name starts with `@vuepress/plugin-` is an officially maintained plugin.
+::: warning 注意
+以 `@vuepress/plugin-` 开头的插件是官方维护的插件。
 :::
 
-## Plugin options
+## 插件的选项
 
-### Babel Style
+### Babel 式
 
-Plugins can have options specified by wrapping the name and an options object in an array inside your config:
+插件可以通过在配置内的数组中封装名称和选项对象来指定选项：
 
 ``` js
 module.exports = {
@@ -75,11 +75,11 @@ module.exports = {
 }
 ```
 
-Since this style is consistent with [babel's Plugin/Preset Options](https://babeljs.io/docs/en/plugins#plugin-preset-options), we call it `Babel Style`.
+由于这种风格和 [babeld Plugin/Preset Options](https://babeljs.io/docs/en/plugins#plugin-preset-options) 一致，我们称之为"Babel 风格"。
 
-### Object Style
+### 对象式
 
-VuePress also provides a simpler way to use plugins from a dependency:
+VuePress 也提供了一种更简单的方式来使用来自依赖的插件：
 
 ``` js
 module.exports = {
@@ -89,10 +89,10 @@ module.exports = {
 }
 ```
 
-::: warning Note
-The plugin can be disabled when `false` is explicitly passed as option.
+::: warning 注意
+可以通过显示地将选项设置成 `false` 来禁用一个插件：
 
-- Babel style
+- Babel 风格
 
 ``` js
 module.exports = {
@@ -102,7 +102,7 @@ module.exports = {
 }
 ```
 
-- Object style
+- 对象风格
 
 ``` js
 module.exports = {

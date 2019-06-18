@@ -1,20 +1,20 @@
 ---
 title: back-to-top
-metaTitle: Back-To-Top Plugin | VuePress
+metaTitle: Back-To-Top 插件 | VuePress
 ---
 
-# [@vuepress/plugin-back-to-top](https://github.com/vuejs/vuepress/tree/master/packages/%40vuepress/plugin-back-to-top)
+# [@vuepress/plugin-back-to-top](https://github.com/vuejs/vuepress/tree/master/packages/@vuepress/plugin-back-to-top)
 
-> Back-to-top plugin
+> back-to-top 插件.
 
-## Install
+## 安装
 
 ```bash
 yarn add -D @vuepress/plugin-back-to-top@next
 # OR npm install -D @vuepress/plugin-back-to-top@next
 ```
 
-## Usage
+## 使用
 
 ```javascript
 module.exports = {

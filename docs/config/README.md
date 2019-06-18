@@ -3,46 +3,44 @@ sidebarDepth: 3
 sidebar: auto
 ---
 
-# Config Reference
+# 配置
 
-<Bit/>
-
-## Basic Config
+## 基本配置
 
 ### base
 
-- Type: `string`
-- Default: `/`
+- 类型: `string`
+- 默认值: `/`
 
-The base URL the site will be deployed at. You will need to set this if you plan to deploy your site under a sub path, for example, GitHub pages. If you plan to deploy your site to `https://foo.github.io/bar/`, then `base` should be set to `"/bar/"`. It should always start and end with a slash.
+部署站点的基础路径，如果你想让你的网站部署到一个子路径下，你将需要设置它。如 GitHub pages，如果你想将你的网站部署到 `https://foo.github.io/bar/`，那么 `base` 应该被设置成 `"/bar/"`，它的值应当总是以斜杠开始，并以斜杠结束。
 
-The `base` is automatically prepended to all the URLs that start with `/` in other options, so you only need to specify it once.
+`base` 将会自动地作为前缀插入到所有以 `/` 开始的其他选项的链接中，所以你只需要指定一次。
 
-**Also see:**
+**参考:**
 
-- [Base URL](../guide/assets.md#base-url)
-- [Deploy Guide > GitHub Pages](../guide/deploy.md#github-pages)
+- [Base URL](../guide/assets.md#基础路径)
+- [部署指南 > GitHub Pages](../guide/deploy.md#github-pages)
 
 ### title
 
-- Type: `string`
-- Default: `undefined`
+- 类型: `string`
+- 默认值: `undefined`
 
-Title for the site. This will be the prefix for all page titles, and displayed in the navbar in the default theme.
+网站的标题，它将会被用作所有页面标题的前缀，同时，默认主题下，它将显示在导航栏（navbar）上。
 
 ### description
 
-- Type: `string`
-- Default: `undefined`
+- 类型: `string`
+- 默认值: `undefined`
 
-Description for the site. This will be rendered as a `<meta>` tag in the page HTML.
+网站的描述，它将会以 `<meta>` 标签渲染到当前页面的 HTML 中。
 
 ### head
 
-- Type: `Array`
-- Default: `[]`
+- 类型: `Array`
+- 默认值: `[]`
 
-Extra tags to be injected to the page HTML `<head>`. Each tag can be specified in the form of `[tagName, { attrName: attrValue }, innerHTML?]`. For example, to add a custom favicon:
+额外的需要被注入到当前页面的 HTML `<head>` 中的标签，每个标签都可以以 `[tagName, { attrName: attrValue }, innerHTML?]` 的格式指定，举个例子，增加一个自定义的 favicon：
 
 ``` js
 module.exports = {
@@ -54,79 +52,77 @@ module.exports = {
 
 ### host
 
-- Type: `string`
-- Default: `'0.0.0.0'`
+- 类型: `string`
+- 默认值: `'0.0.0.0'`
 
-Specify the host to use for the dev server.
+指定用于 dev server 的主机名。
 
 ### port
 
-- Type: `number`
-- Default: `8080`
+- 类型: `number`
+- 默认值: `8080`
 
-Specify the port to use for the dev server.
+指定 dev server 的端口。
 
 ### temp
 
 - Type: `string`
 - Default: `/path/to/@vuepress/core/.temp`
 
-
-Specify the temporary directory for client.
+指定客户端文件的临时目录。
 
 ### dest
 
-- Type: `string`
-- Default: `.vuepress/dist`
+- 类型: `string`
+- 默认值: `.vuepress/dist`
 
-Specify the output directory for `vuepress build`. If a relative path is specified, it will be resolved based on `process.cwd()`.
+指定 `vuepress build` 的输出目录。如果传入的是相对路径，则会基于 `process.cwd()` 进行解析。
 
 ### locales
 
-- Type: `{ [path: string]: Object }`
-- Default: `undefined`
+- 类型: `{ [path: string]: Object }`
+- 默认值: `undefined`
 
-Specify locales for i18n support. For more details, see the guide on [Internationalization](../guide/i18n.md).
+提供多语言支持的语言配置。具体细节请查看 [多语言支持](../guide/i18n.md)。
 
 ### shouldPrefetch
 
-- Type: `Function`
-- Default: `() => true`
+- 类型: `Function`
+- 默认值: `() => true`
 
-A function to control what files should have `<link rel="preload">` resource hints generated. See [shouldPrefetch](https://ssr.vuejs.org/api/#shouldprefetch).
+一个函数，用来控制对于哪些文件，是需要生成 `<link rel="prefetch">` 资源提示的。请参考 [shouldPrefetch](https://ssr.vuejs.org/zh/api/#shouldpreload)。
 
 ### cache
 
-- Type: `boolean|string`
-- Default: `true`
+- 类型: `boolean|string`
+- 默认值: `true`
 
-VuePress uses [cache-loader](https://github.com/webpack-contrib/cache-loader) by default to greatly speed up the compilation of webpack.
+VuePress 默认使用了 [cache-loader](https://github.com/webpack-contrib/cache-loader)  来大大地加快 webpack 的编译速度。
 
-This option can be used to specify the path to the cache, and can also remove the cache before each build by setting it to `false`.
+此选项可以用于指定 cache 的路径，同时也可以通过设置为 `false` 来在每次构建之前删除 cache。
 
 ::: tip
-This option can also be used through the CLI:
-
+这个选项也可以通过命令行来使用：
 ```bash
-vuepress dev docs --cache .cache # set cache path
-vuepress dev docs --no-cache     # remove cache before each build.
+vuepress dev docs --cache .cache # 设置 cache 路径
+vuepress dev docs --no-cache     # 在每次构建前删除 cache
 ```
 :::
 
 ### extraWatchFiles
 
-- Type: `Array`
-- Default: `[]`
+- 类型: `Array`
+- 默认值: `[]`
 
-Specify extra files to be watched.
+指定额外的需要被监听的文件。
 
-You can watch any file if you want. File changes will trigger `vuepress` rebuilding and real-time updates.
+你可以监听任何想监听的文件，文件变动将会触发 `vuepress` 重新构建，并实时更新。
 
 ``` js
 module.exports = {
   extraWatchFiles: [
-    '.vuepress/foo.js', // Relative path usage
-    '/path/to/bar.js'   // Absolute path usage
+    '.vuepress/foo.js', // 使用相对路径
+    '/path/to/bar.js'   // 使用绝对路径
   ]
 }
 ```
@@ -135,12 +131,12 @@ module.exports = {
 
 ### palette.styl
 
-If you wish to apply simple color overrides to the styling of the [default preset](https://github.com/vuejs/vuepress/blob/master/packages/@vuepress/core/lib/app/style/config.styl) or define some color variables for using later, you can create an `.vuepress/styles/palette.styl` file.
+如果要对[默认预设](https://github.com/vuejs/vuepress/blob/master/packages/@vuepress/core/lib/app/style/config.styl)的样式应用简单的颜色替换，或者定义一些颜色变量供以后使用，你可以创建一个 `.vuepress/styles/palette.styl` 文件。
 
-There are a few color variables you can tweak:
+你可以调整一些颜色变量:
 
 ``` stylus
-// showing default values
+// 默认值
 $accentColor = #3eaf7c
 $textColor = #2c3e50
 $borderColor = #eaecef
@@ -148,12 +144,12 @@ $codeBgColor = #282c34
 ```
 
 ::: danger Note
-You should ONLY write color variables in this file. since `palette.styl` will be imported at the end of the root stylus config file, as a config, it will be used by multiple files, so once you wrote styles here, your style would be duplicated by multiple times.
+你应该**只在**这个文件中写入颜色变量。因为 `palette.styl` 将在根的 stylus 配置文件的末尾引入，作为配置，它将被多个文件使用，所以一旦你在这里写了样式，你的样式就会被多次复制。
 :::
 
 ### index.styl
 
-VuePress provides a convenient way to add extra styles. you can create an `.vuepress/styles/index.styl` file for that. This is a [Stylus](http://stylus-lang.com/) file but you can use normal CSS syntax as well.
+VuePress 提供了一种添加额外样式的简便方法。你可以创建一个 `.vuepress/styles/index.styl` 文件。这是一个 [Stylus](http://stylus-lang.com/) 文件，但你也可以使用正常的 CSS 语法。
 
 ```stylus
 .content {
@@ -161,95 +157,91 @@ VuePress provides a convenient way to add extra styles. you can create an `.vuep
 }
 ```
 
-**Also see:**
-
-- [Why can't `palette.styl` and `index.styl` merge into one API?](../faq/README.md#why-can-t-palette-styl-and-index-styl-merge-into-one-api)
-
-## Theming
+## 主题
 
 ### theme
 
-- Type: `string`
-- Default: `undefined`
+- 类型: `string`
+- 默认值: `undefined`
 
-Specify this to use a custom theme.
+当你使用自定义主题的时候，需要指定它。
 
-**Also see:**
+**参考:**
 
-- [Using a theme](../theme/using-a-theme.md).
+- [使用主题](../theme/using-a-theme.md).
 
 ### themeConfig
 
-- Type: `Object`
-- Default: `{}`
+- 类型: `Object`
+- 默认值: `{}`
 
-Provide config options to the used theme. The options will vary depending on the theme you are using.
+为当前的主题提供一些配置，这些选项依赖于你正在使用的主题。
 
-**Also see:**
+**也可以参考:**
 
-- [Default Theme Configuration](../theme/default-theme-config.md).
+- [默认主题](../theme/default-theme-config.md)。
 
 ## Pluggable
 
 ### plugins
 
-- Type: `Object|Array`
-- Default: `undefined`
+- 类型: `Object|Array`
+- 默认值: `undefined`
 
-Please refer to [Plugin > Using a plugin](../plugin/using-a-plugin.md) to learn how to use a plugin.
+请参考 [plugin > Using a plugin](../plugin/using-a-plugin.md) 来使用一个插件。
 
 ## Markdown
 
 ### markdown.lineNumbers
 
-- Type: `boolean`
-- Default: `undefined`
+- 类型: `boolean`
+- 默认值: `undefined`
 
-Whether to show line numbers to the left of each code blocks.
+是否在每个代码块的左侧显示行号。
 
-**Also see:**
+**参考:**
 
-- [Line Numbers](../guide/markdown.md#line-numbers)
+- [行号](../guide/markdown.md#行号)
 
 ### markdown.slugify
 
-- Type: `Function`
-- Default: [source](https://github.com/vuejs/vuepress/tree/master/packages/@vuepress/shared-utils/src/slugify.ts)
+- 类型: `Function`
+- 默认值: [source](https://github.com/vuejs/vuepress/tree/master/packages/@vuepress/shared-utils/src/slugify.ts)
 
-Function for transforming [header](../miscellaneous/glossary.md#headers) texts into slugs. Changing this affects the ids/links generated for header anchors, [table of contents](../guide/markdown.md#table-of-contents) and [sidebar](../theme/default-theme-config.md#sidebar) links.
+一个将标题文本转换为 slug 的函数。修改它会影响 [标题](../miscellaneous/glossary.md#headers)、[目录](../guide/markdown.md#目录)、以及[侧边栏](../theme/default-theme-config.md#侧边栏)链接的 id 和 链接。
 
 ### markdown.anchor
 
-- Type: `Object`
-- Default: `{ permalink: true, permalinkBefore: true, permalinkSymbol: '#' }`
+- 类型: `Object`
+- 默认值: `{ permalink: true, permalinkBefore: true, permalinkSymbol: '#' }`
 
-Options for [markdown-it-anchor](https://github.com/valeriangalliat/markdown-it-anchor). (Note: prefer `markdown.slugify` if you want to customize header ids.)
+[markdown-it-anchor](https://github.com/valeriangalliat/markdown-it-anchor) 的选项。
 
 ### markdown.externalLinks
 
-- Type: `Object`
-- Default: `{ target: '_blank', rel: 'noopener noreferrer' }`
+- 类型: `Object`
+- 默认值: `{ target: '_blank', rel: 'noopener noreferrer' }`
 
-The key and value pair will be added to `<a>` tags that point to an external link. The default option will open external links in a new window.
+这个键值对将会作为特性被增加到是外部链接的 `<a>` 标签上，默认的选项将会在新窗口中打开一个该外部链接。
 
 ### markdown.toc
 
-- Type: `Object`
-- Default: `{ includeLevel: [2, 3] }`
+- 类型: `Object`
+- 默认值: `{ includeLevel: [2, 3] }`
 
-Options for [markdown-it-table-of-contents](https://github.com/Oktavilla/markdown-it-table-of-contents). (Note: prefer `markdown.slugify` if you want to customize header ids.)
+[markdown-it-table-of-contents](https://github.com/Oktavilla/markdown-it-table-of-contents) 的选项。
 
 ### markdown.plugins
 
-You can install any markdown-it plugins through `markdown.plugins` option. It is similar with [using VuePress plugins](../plugin/using-a-plugin.html#using-a-plugin). You can either use Babel style or object style. The `markdown-it-` prefix is optional and can omit in the list.
+你可以使用 `markdown.plugins` 来安装 markdown-it 插件。它的使用方法与[安装一个 VuePress 插件](../plugin/using-a-plugin.html#using-a-plugin)类似。你可以使用 Babel 语法或对象语法。`markdown-it-` 前缀同样是可以忽略的。
 
 ``` js
 module.exports = {
   markdown: {
     plugins: [
-      '@org/foo', // equals to @org/markdown-it-foo if exists
+      '@org/foo', // 等价于 @org/markdown-it-foo，如果对应的包存在
       ['markdown-it-bar', {
-        // provide options here
+        // 提供你的选项
       }]
     ]
   }
@@ -264,7 +256,7 @@ module.exports = {
     plugins: {
       '@org/foo': {}
       'markdown-it-bar': {
-        // provide options here
+        // 提供你的选项
       }
     }
   }
@@ -273,10 +265,10 @@ module.exports = {
 
 ### markdown.extendMarkdown
 
-- Type: `Function`
-- Default: `undefined`
+- 类型: `Function`
+- 默认值: `undefined`
 
-A function to modify default config or apply additional plugins to the [markdown-it](https://github.com/markdown-it/markdown-it) instance used to render source files. e.g.
+一个用于修改当前的 [markdown-it](https://github.com/markdown-it/markdown-it) 实例的默认配置，或者应用额外的插件的函数，举例如下：
 
 ``` js
 module.exports = {
@@ -290,62 +282,58 @@ module.exports = {
 ```
 
 ::: tip
-This option is also included in [Plugin API](../plugin/option-api.md#extendmarkdown).
+这个选项也被 [Plugin API](../plugin/option-api.md#extendmarkdown) 所支持。
 :::
 
-## Build Pipeline
-
-:::tip Configuring CSS Pre-processors
-VuePress comes with built-in webpack config for the CSS pre-processors listed below. For more information on installation these or pre-processors without built-in support, see [Using Pre-Processors](../guide/using-vue.md#using-pre-processors) for more information.
-:::
+## 构建流程
 
 ### postcss
 
-- Type: `Object`
-- Default: `{ plugins: [require('autoprefixer')] }`
+- 类型: `Object`
+- 默认值: `{ plugins: [require('autoprefixer')] }`
 
-Options for [postcss-loader](https://github.com/postcss/postcss-loader). Note specifying this value will overwrite autoprefixer and you will need to include it yourself.
+[postcss-loader](https://github.com/postcss/postcss-loader) 的选项，请注意，指定这个值，将会覆盖内置的 autoprefixer，所以你需要自己将它加进去。
 
 ### stylus
 
-- Type: `Object`
-- Default: `{ preferPathResolver: 'webpack' }`
+- 类型: `Object`
+- 默认值: `{ preferPathResolver: 'webpack' }`
 
-Options for [stylus-loader](https://github.com/shama/stylus-loader).
+[stylus-loader](https://github.com/shama/stylus-loader) 的选项。
 
 ### scss
 
-- Type: `Object`
-- Default: `{}`
+- 类型: `Object`
+- 默认值: `{}`
 
-Options for [sass-loader](https://github.com/webpack-contrib/sass-loader) to load `*.scss` files.
+加载 `*.scss` 文件的 [sass-loader](https://github.com/postcss/postcss-loader) 的选项。
 
 ### sass
 
-- Type: `Object`
-- Default: `{ indentedSyntax: true }`
+- 类型: `Object`
+- 默认值: `{ indentedSyntax: true }`
 
-Options for [sass-loader](https://github.com/webpack-contrib/sass-loader) to load `*.sass` files.
+加载 `*.sass` 文件的 [sass-loader](https://github.com/postcss/postcss-loader) 的选项。
 
 ### less
 
-- Type: `Object`
+- 类型: `Object`
 - Default: `{}`
 
-Options for [less-loader](https://github.com/webpack-contrib/less-loader).
+[less-loader](https://github.com/webpack-contrib/less-loader) 的选项。
 
 ### configureWebpack
 
-- Type: `Object | Function`
-- Default: `undefined`
+- 类型: `Object | Function`
+- 默认值: `undefined`
 
-Modify the internal webpack config. If the value is an Object, it will be merged into the final config using [webpack-merge](https://github.com/survivejs/webpack-merge); If the value is a function, it will receive the config as the 1st argument and an `isServer` flag as the 2nd argument. You can either mutate the config directly, or return an object to be merged:
+用于修改内部的 Webpack 配置。如果给定一个对象，那么它将会被 [webpack-merge](https://github.com/survivejs/webpack-merge) 合并到最终的配置中，如果给定一个函数，它将会接受 `config` 作为第一个参数，以及 `isServer` 作为第二个参数，你可以直接更改 `config`，也可以返回一个待合并的对象。
 
 ``` js
 module.exports = {
   configureWebpack: (config, isServer) => {
     if (!isServer) {
-      // mutate the config for client
+      // 修改客户端的 webpack 配置
     }
   }
 }
@@ -353,24 +341,24 @@ module.exports = {
 
 ### chainWebpack
 
-- Type: `Function`
-- Default: `undefined`
+- 类型: `Function`
+- 默认值: `undefined`
 
-Modify the internal webpack config with [webpack-chain](https://github.com/mozilla-neutrino/webpack-chain).
+通过 [webpack-chain](https://github.com/mozilla-neutrino/webpack-chain) 来修改内部的 Webpack 配置。
 
 ``` js
 module.exports = {
   chainWebpack: (config, isServer) => {
-    // config is an instance of ChainableConfig
+    // config 是 ChainableConfig 的一个实例
   }
 }
 ```
 
-## Browser Compatibility
+## 浏览器兼容性
 
 ### evergreen
 
-- Type: `boolean | Function`
-- Default: `false`
+- 类型: `boolean | Function`
+- 默认值: `false`
 
-Set to `true` if you are only targeting evergreen browsers. This will disable ES5 transpilation and polyfills for IE, and result in faster builds and smaller files.
+如果你的对象只有那些 “常青树” 浏览器，你可以将其设置成 `true`，这将会禁止 ESNext 到 ES5 的转译以及对 IE 的 polyfills，同时会带来更快的构建速度和更小的文件体积。

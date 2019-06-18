@@ -1,15 +1,15 @@
-# Global Computed
+# 全局计算属性
 
-In VuePress, some core [computed](https://vuejs.org/v2/guide/computed.html#Computed-Properties) properties are built in for use by [default theme](../theme/default-theme-config.md) or custom themes.
+在 VuePress 中，内置了一些核心的[计算属性](https://cn.vuejs.org/v2/guide/computed.html#%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7)，以供[默认主题](../theme/default-theme-config.md) 或自定义主题使用。
 
 ## $site
 
-This is the `$site` value of the website you see now:
+这是你现在看到的这个网站的 `$site` 的值：
 
 ``` json
 {
   "title": "VuePress",
-  "description": "Vue-powered static site generator",
+  "description": "Vue 驱动的静态网站生成器",
   "base": "/",
   "pages": [
     {
@@ -25,15 +25,17 @@ This is the `$site` value of the website you see now:
 
 ## $page
 
-This is the `$page` value of the page you see now:
+这是你现在看到的这个页面的 `$page` 的值：
 
 ``` json
 {
   "title": "Global Computed",
-  "frontmatter": {},
-  "regularPath": "/miscellaneous/global-computed.html",
-  "key": "v-d4cbeb69eff3d",
-  "path": "/miscellaneous/global-computed.html",
+  "frontmatter": {
+    "sidebar": "auto"
+  },
+  "regularPath": "/zh/miscellaneous/global-computed.html",
+  "key": "v-bc9a3e3f9692d",
+  "path": "/zh/miscellaneous/global-computed.html",
   "headers": [
     {
       "level": 2,
@@ -43,7 +45,7 @@ This is the `$page` value of the page you see now:
     {
       "level": 2,
       "title": "$page",
-      "slug": "$page"
+      "slug": "page"
     },
     ...
   ]
@@ -52,32 +54,32 @@ This is the `$page` value of the page you see now:
 
 ## $frontmatter
 
-Reference of [$page](#page).frontmatter.
+[$page](#page).frontmatter 的引用。
 
 ## $lang
 
-The language of the current page, the default value is `en-US`.
+当前页面的语言，默认值为 `en-US`。
 
-**Also see:**
+**参考:**
 
-- [Internationalization](../guide/i18n.md)
+- [多语言支持](i18n.md)
 
 ## $localePath
 
-The locale path prefix for the current page, the default value is `/`.
+当前页面的 locale 路径前缀，默认值为 `/`，当前页面为 `/zh/`。
 
-**Also see:**
+**参考:**
 
-- [Internationalization](../guide/i18n.md)
+- [多语言支持](i18n.md)
 
 ## $title
 
-Value of the `<title>` label used for the current page.
+用于当前页面的 `<title>` 标签的值。
 
 ## $description
 
-The `content` value of the `<meta name= "description" content= "...">` for the current page.
+用于当前页面的 `<meta name="description" content="...">` 的 `content` 值。
 
 ## $themeConfig
 
-i.e. `siteConfig.themeConfig`。
+即 `siteConfig.themeConfig`。

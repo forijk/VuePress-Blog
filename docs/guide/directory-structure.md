@@ -1,23 +1,23 @@
-# Directory Structure
+# 目录结构
 
-VuePress follows the principle of **"Convention is better than configuration"**, the recommended document structure is as follows:
+VuePress 遵循 **“约定优于配置”** 的原则，推荐的目录结构如下：
 
 ::: vue
 .
 ├── docs
-│   ├── .vuepress _(**Optional**)_
-│   │   ├── `components` _(**Optional**)_
-│   │   ├── `theme` _(**Optional**)_
+│   ├── .vuepress _(**可选的**)_
+│   │   ├── `components` _(**可选的**)_
+│   │   ├── `theme` _(**可选的**)_
 │   │   │   └── Layout.vue
-│   │   ├── `public` _(**Optional**)_
-│   │   ├── `styles` _(**Optional**)_
+│   │   ├── `public` _(**可选的**)_
+│   │   ├── `styles` _(**可选的**)_
 │   │   │   ├── index.styl
 │   │   │   └── palette.styl
-│   │   ├── `templates` _(**Optional, Danger Zone**)_
+│   │   ├── `templates` _(**可选的, 谨慎配置**)_
 │   │   │   ├── dev.html
 │   │   │   └── ssr.html
-│   │   ├── `config.js` _(**Optional**)_
-│   │   └── `enhanceApp.js` _(**Optional**)_
+│   │   ├── `config.js` _(**可选的**)_
+│   │   └── `enhanceApp.js` _(**可选的**)_
 │   │ 
 │   ├── README.md
 │   ├── guide
@@ -27,40 +27,40 @@ VuePress follows the principle of **"Convention is better than configuration"**,
 └── package.json
 :::
 
-::: warning Note
-Please note the capitalization of the directory name.
+::: warning 注意
+请留意目录名的大写。
 :::
 
-- `docs/.vuepress`: It is used to store global configuration, components, static resources, etc.
-- `docs/.vuepress/components`: The Vue components in this directory will be automatically registered as global components.
-- `docs/.vuepress/theme`: Used to store local theme.
-- `docs/.vuepress/styles`: Stores style related files.
-- `docs/.vuepress/styles/index.styl`: Automatically applied global style files, generated at the ending of the CSS file, have a higher priority than the default style.
-- `docs/.vuepress/styles/palette.styl`: The palette is used to override the default color constants and to set the color constants of Stylus.
-- `docs/.vuepress/public`: Static resource directory.
-- `docs/.vuepress/templates`: Store HTML template files.
-- `docs/.vuepress/templates/dev.html`: HTML template file for development environment.
-- `docs/.vuepress/templates/ssr.html`: Vue SSR based HTML template file in the built time.
-- `docs/.vuepress/config.js`: Entry file of configuration, can also be `yml` or `toml`.
-- `docs/.vuepress/enhanceApp.js`: App level enhancement.
+- `docs/.vuepress`: 用于存放全局的配置、组件、静态资源等。
+- `docs/.vuepress/components`: 该目录中的 Vue 组件将会被自动注册为全局组件。
+- `docs/.vuepress/theme`: 用于存放本地主题。
+- `docs/.vuepress/styles`: 用于存放样式相关的文件。
+- `docs/.vuepress/styles/index.styl`: 将会被自动应用的全局样式文件，会生成在最终的 CSS 文件结尾，具有比默认样式更高的优先级。
+- `docs/.vuepress/styles/palette.styl`: 用于重写默认颜色常量，或者设置新的 stylus 颜色常量。
+- `docs/.vuepress/public`: 静态资源目录。
+- `docs/.vuepress/templates`: 存储 HTML 模板文件。
+- `docs/.vuepress/templates/dev.html`: 用于开发环境的 HTML 模板文件。
+- `docs/.vuepress/templates/ssr.html`: 构建时基于 Vue SSR 的 HTML 模板文件。
+- `docs/.vuepress/config.js`: 配置文件的入口文件，也可以是 `YML` 或 `toml`。
+- `docs/.vuepress/enhanceApp.js`: 客户端应用的增强。
 
-::: warning Note
-When customizing `templates/ssr.html`, or `templates/dev.html`, it is best to modify it on the basis of the [default template files](https://github.com/vuejs/vuepress/blob/master/packages/%40vuepress/core/lib/app/index.dev.html), otherwise it may cause a build failure.
+::: warning 注意
+当你想要去自定义 `templates/ssr.html` 或 `templates/dev.html` 时，最好基于 [默认的模板文件](https://github.com/vuejs/vuepress/blob/master/packages/%40vuepress/core/lib/app/index.dev.html) 来修改，否则可能会导致构建出错。
 :::
 
-## Default Page Routing
+**同时阅读:** 
 
-For the above directory structure, the default page routing paths are as follows:
+- [配置](../config/README.md)
+- [主题](../theme/README.md)
+- [默认主题配置](../theme/default-theme-config.md)
 
-| Relative Path | Page Routing |
+## 默认的页面路由
+
+此外，对于上述的目录结构，默认页面路由地址如下：
+
+| 文件的相对路径 | 页面路由地址 |
 |---|---|
 | `/README.md` | `/` |
 | `/guide/README.md` | `/guide/` |
 | `/config.md` | `/config.html` |
-
-**Also see:** 
-
-- [Config](../config/README.md)
-- [Theme](../theme/)
-- [Default Theme Config](../theme/default-theme-config.md)
 

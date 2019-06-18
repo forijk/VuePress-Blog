@@ -1,33 +1,33 @@
 # Node.js API <Badge text="1.0.0-alpha.44+"/>
 
-## Usage
+## 使用
 
 ```js
 const { createApp, dev, build, eject } = require('vuepress')
 ```
 
-## Methods
+## 方法
 
 ### createApp(\[options]): Promise\<App>
 
-Create a VuePress application.
+创建一个 VuePress 应用实例。
 
 #### App.prototype.process: () => Promise\<void> | never
 
-A asynchronous method used to prepare the context of the current app. which contains loading pages and plugins, apply plugins, etc.
+用于准备当前站点上下文的异步方法。其中包含加载页面和插件、应用插件等。
 
 #### App.prototype.dev: () => Promise\<App> | never
 
-Launch a dev process with current app context.
+使用当前应用程序上下文启动一个 devProcess.
+
 
 #### App.prototype.build: () => Promise\<App> | never
 
-Launch a build process with current app context.
-
+使用当前应用程序上下文启动一个 buildProcess.
 
 ### dev(\[options]): Promise\<App>
 
-Start a development server, actually it's implemented by `createApp`:
+启动一个 Dev Server，实际上它是由 `createapp` 实现的：
 
 ```js
 async function dev (options) {
@@ -39,7 +39,7 @@ async function dev (options) {
 
 ### build(\[options]): Promise\<App>
 
-Build your source files as a static site, actually it's implemented by `createApp`:
+将源文件构建为静态站点, 实际上它是由 `createapp` 实现的：
 
 ```js
 async function build (options) {
@@ -51,49 +51,50 @@ async function build (options) {
 
 ### eject(targetDir): Promise\<void>
 
-Copy the default theme into `{targetDir}/.vuepress/theme` for customization.
+将默认主题复制到 `{targetDir}/.vuepress/theme`中进行自定义。
 
 
 ## Options
 
 ### sourceDir
 
-- Type: `string`
-- Required: `true`
+- 类型: `string`
+- 默认值: `true`
 
-Specify the source directory of your VuePress site.
+指定 VuePress 站点的源目录。
 
 ### theme
 
-- Type: `string`
-- Required: `false`
+- 类型: `string`
+- 默认值: `false`
 
-See [theme](../config/README.md#theme).
+参见 [theme](../config/README.md#theme)。
 
 ### plugins
 
-- Type: `array`
-- Required: `false`
+- 类型: `array`
+- 默认值: `false`
 
-See [plugins](../config/README.md#plugins).
+参见 [plugins](../config/README.md#plugins)。
 
 ### temp
 
-- Type: `string`
-- Required: `false`
+- 类型: `string`
+- 默认值: `false`
 
-See [temp](../config/README.md#temp).
+参见 [temp](../config/README.md#temp)。
 
 ### dest
 
-- Type: `string`
-- Required: `false`
+- 类型: `string`
+- 默认值: `false`
 
-See [dest](../config/README.md#dest).
+参见 [dest](../config/README.md#dest)。
 
 ### siteConfig
 
-- Type: `object`
-- Required: `{}`
+- 类型: `object`
+- 默认值: `{}`
 
-It's very useful when you're writing tests and don't want to depend on actual config file, for all options please head [siteConfig](../config/README.md).
+当你想编写测试且不想依赖于实际的配置文件时，它将非常有用。想要查看所有的配置选项，请移步 [siteConfig](../config/README.md)。
+

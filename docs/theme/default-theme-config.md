@@ -1,45 +1,41 @@
-# Default Theme Config
-
-<Bit/>
+# 默认主题配置
 
 ::: tip
-All options listed on this page apply to the default theme only. If you are using a custom theme, the options may be different.
+本页所列的选项仅对默认主题生效。如果你在使用一个自定义主题，选项可能会有不同。
 :::
 
-## Homepage
+## 首页
 
-The default theme provides a homepage layout (which is used on [the homepage of this very website](../README.md)). To use it, specify `home: true` plus some other metadata in your root `README.md`'s [YAML front matter](../guide/markdown.md#front-matter). This is an example of how it works:
+默认的主题提供了一个首页（Homepage）的布局 (用于 [这个网站的主页](../README.md))。想要使用它，需要在你的根级 `README.md` 的 [YAML front matter](../guide/markdown.md#front-matter) 指定 `home: true`。以下是一个如何使用的例子：
 
 ``` yaml
 ---
 home: true
 heroImage: /hero.png
-heroText: Hero Title
-tagline: Hero subtitle
-actionText: Get Started →
-actionLink: /guide/
+heroText: Hero 标题
+tagline: Hero 副标题
+actionText: 快速上手 →
+actionLink: /zh/guide/
 features:
-- title: Simplicity First
-  details: Minimal setup with markdown-centered project structure helps you focus on writing.
-- title: Vue-Powered
-  details: Enjoy the dev experience of Vue + webpack, use Vue components in markdown, and develop custom themes with Vue.
-- title: Performant
-  details: VuePress generates pre-rendered static HTML for each page, and runs as an SPA once a page is loaded.
+- title: 简洁至上
+  details: 以 Markdown 为中心的项目结构，以最少的配置帮助你专注于写作。
+- title: Vue驱动
+  details: 享受 Vue + webpack 的开发体验，在 Markdown 中使用 Vue 组件，同时可以使用 Vue 来开发自定义主题。
+- title: 高性能
+  details: VuePress 为每个页面预渲染生成静态的 HTML，同时在页面被加载的时候，将作为 SPA 运行。
 footer: MIT Licensed | Copyright © 2018-present Evan You
 ---
 ```
 
-Any additional content after the `YAML front matter` will be parsed as normal markdown and rendered after the features section.
+任何 `YAML front matter` 之后额外的内容将会以普通的 markdown 被渲染，并插入到 `features` 的后面。
 
-If you want to use a completely custom homepage layout, you can also use a [Custom Layout](#custom-layout-for-specific-pages).
+## 导航栏
 
-## Navbar
+导航栏可能包含你的页面标题、[搜索框](#搜索框)、 [导航栏链接](#导航栏链接)、[多语言切换](../guide/i18n.md)、[仓库链接](#git-仓库和编辑链接)，它们均取决于你的配置。
 
-The Navbar may contain your page title, [Search Box](#search-box), [Navbar Links](#navbar-links), [Languages](../guide/i18n.md) and [Repository Link](#git-repo-and-edit-links), all of them depends on your configuration.
+### 导航栏链接
 
-### Navbar Links
-
-You can add links to the navbar via `themeConfig.nav`:
+你可以通过 `themeConfig.nav` 增加一些导航栏链接:
 
 ``` js
 // .vuepress/config.js
@@ -54,7 +50,7 @@ module.exports = {
 }
 ```
 
-These links can also be dropdown menus if you provide an array of `items` instead of a `link`:
+当你提供了一个 `items` 数组而不是一个单一的 `link` 时，它将显示为一个 `下拉列表` ：
 
 ```js
 module.exports = {
@@ -72,7 +68,7 @@ module.exports = {
 }
 ```
 
-In addition, you can have sub groups inside a dropdown by having nested items:
+此外，你还可以通过嵌套的 `items` 来在 `下拉列表` 中设置分组：
 
 ```js
 module.exports = {
@@ -90,9 +86,9 @@ module.exports = {
 }
 ```
 
-### Disable the Navbar
+### 禁用导航栏
 
-To disable the navbar globally, use `themeConfig.navbar`:
+你可以使用 `themeConfig.navbar` 来禁用所有页面的导航栏：
 
 ``` js
 // .vuepress/config.js
@@ -103,7 +99,7 @@ module.exports = {
 }
 ```
 
-You can disable the navbar for a specific page via `YAML front matter`:
+你也可以通过 `YAML front matter` 来禁用某个指定页面的导航栏：
 
 ``` yaml
 ---
@@ -111,9 +107,9 @@ navbar: false
 ---
 ```
 
-## Sidebar
+## 侧边栏
 
-To enable the sidebar, use `themeConfig.sidebar`. The basic configuration expects an Array of links:
+想要使 侧边栏（Sidebar）生效，需要配置 `themeConfig.sidebar`，基本的配置，需要一个包含了多个链接的数组：
 
 ``` js
 // .vuepress/config.js
@@ -128,13 +124,13 @@ module.exports = {
 }
 ```
 
-You can omit the `.md` extension, and paths ending with `/` are inferred as `*/README.md`. The text for the link is automatically inferred (either from the first header in the page or explicit title in `YAML front matter`). If you wish to explicitly specify the link text, use an Array in form of `[link, text]`.
+你可以省略 `.md` 拓展名，同时以 `/` 结尾的路径将会被视为 `*/README.md`，这个链接的文字将会被自动获取到（无论你是声明为页面的第一个 header，还是明确地在 `YAML front matter` 中指定页面的标题）。如果你想要显示地指定链接的文字，使用一个格式为 `[link, text]` 的数组。
 
-### Nested Header Links
+### 嵌套的标题链接
 
-The sidebar automatically displays links for headers in the current active page, nested under the link for the page itself. You can customize this behavior using `themeConfig.sidebarDepth`. The default depth is `1`, which extracts the `h2` headers. Setting it to `0` disables the header links, and the max value is `2` which extracts both `h2` and `h3` headers.
+默认情况下，侧边栏会自动地显示由当前页面的标题（headers）组成的链接，并按照页面本身的结构进行嵌套，你可以通过 `themeConfig.sidebarDepth` 来修改它的行为。默认的深度是 `1`，它将提取到 `h2` 的标题，设置成 `0` 将会禁用标题（headers）链接，同时，最大的深度为 `2`，它将同时提取 `h2` 和 `h3` 标题。
 
-A page can also override this value via `YAML front matter`:
+也可以使用 `YAML front matter` 来为某个页面重写此值：
 
 ``` md
 ---
@@ -142,37 +138,38 @@ sidebarDepth: 2
 ---
 ```
 
-### Displaying Header Links of All Pages <Badge text="0.11.0+"/>
+### 显示所有页面的标题链接 <Badge text="0.11.0+"/>
 
-The sidebar only displays links for headers in the current active page. You can display all header links for every page with `themeConfig.displayAllHeaders: true`:
+默认情况下，侧边栏只会显示由当前活动页面的标题（headers）组成的链接，你可以将 `themeConfig.displayAllHeaders` 设置为 `true` 来显示所有页面的标题链接：
 
 ``` js
 module.exports = {
   themeConfig: {
-    displayAllHeaders: true // Default: false
+    displayAllHeaders: true // 默认值：false
   }
 }
 ```
 
-### Active Header Links
+### 活动的标题链接
 
-By default, the nested header links and the hash in the URL are updated as the user scrolls to view the different sections of the page. This behavior can be disabled with the following theme config:
+默认情况下，当用户通过滚动查看页面的不同部分时，嵌套的标题链接和 URL 中的 Hash 值会实时更新，这个行为可以通过以下的配置来禁用：
 
 ``` js
 module.exports = {
   themeConfig: {
-    activeHeaderLinks: false, // Default: true
+    activeHeaderLinks: false, // 默认值：true
   }
 }
 ```
 
 ::: tip
-  It is worth mentioning that when you disable this option, the corresponding script of this functionality will not be loaded. This is a small point in our performance optimization.
+值得一提的是，当你禁用此选项时，此功能的相应脚本将不会被加载，这是我们性能优化的一个小点。
 :::
 
-### Sidebar Groups
 
-You can divide sidebar links into multiple groups by using objects:
+### 侧边栏分组
+
+你可以通过使用**对象**来将侧边栏划分成多个组：
 
 ``` js
 // .vuepress/config.js
@@ -180,10 +177,10 @@ module.exports = {
   themeConfig: {
     sidebar: [
       {
-        title: 'Group 1',   // required
-        path: '/foo/',      // optional, which should be a absolute path.
-        collapsable: false, // optional, defaults to true
-        sidebarDepth: 1,    // optional, defaults to 1
+        title: 'Group 1',   // 必要的
+        path: '/foo/',      // 可选的, 应该是一个绝对路径
+        collapsable: false, // 可选的, 默认值是 true,
+        sidebarDepth: 1,    // 可选的, 默认值是 1
         children: [
           '/'
         ]
@@ -197,17 +194,17 @@ module.exports = {
 }
 ```
 
-Sidebar groups are collapsable by default. You can force a group to be always open with `collapsable: false`.
+侧边栏的每个子组默认是可折叠的，你可以设置 `collapsable: false` 来让一个组永远都是展开状态。
 
-A sidebar group config also supports [sidebarDepth](#nested-header-links) field to override the default sidebar depth (`1`).
+一个侧边栏的子组配置同时支持 [sidebarDepth](#nested-header-links) 字段用于重写默认显示的侧边栏深度(`1`)。
 
 ::: tip
-   From `1.0.0-alpha.36` on, nested sidebar group <Badge text="beta"/> is also supported, but the nesting depth should be less than 3, otherwise the console will receive a warning.
+  从 `1.0.0-alpha.36` 开始，嵌套的侧边栏分组 <Badge text="beta"/> 也是支持的，但嵌套深度应小于 3，否则在控制台会收到警告。
 :::
 
-### Multiple Sidebars
+### 多个侧边栏
 
-If you wish to display different sidebars for different sections of content, first organize your pages into directories for each desired section:
+如果你想为不同的页面组来显示不同的侧边栏，首先，将你的页面文件组织成下述的目录结构：
 
 ```
 .
@@ -224,7 +221,7 @@ If you wish to display different sidebars for different sections of content, fir
    └─ four.md
 ```
 
-Then, update your configuration to define your sidebar for each section.
+接着，遵循以下的侧边栏配置：
 
 ``` js
 // .vuepress/config.js
@@ -255,14 +252,12 @@ module.exports = {
 ```
 
 ::: warning
-Make sure to define the fallback configuration last.
-
-VuePress checks each sidebar config from top to bottom. If the fallback configuration was first, VuePress would incorrectly match `/foo/` or `/bar/four.html` because they both start with `/`.
+确保 fallback 侧边栏被最后定义。VuePress 会按顺序遍历侧边栏配置来寻找匹配的配置。
 :::
 
-### Auto Sidebar for Single Pages
+### 自动生成侧栏
 
-If you wish to automatically generate a sidebar that contains only the header links for the current page, you can use `YAML front matter` on that page:
+如果你希望自动生成一个仅仅包含了当前页面标题（headers）链接的侧边栏，你可以通过 `YAML front matter` 来实现：
 
 ``` yaml
 ---
@@ -270,7 +265,7 @@ sidebar: auto
 ---
 ```
 
-You can also enable it in all pages by using config:
+你也可以通过配置来在所有页面中启用它：
 
 ``` js
 // .vuepress/config.js
@@ -281,22 +276,22 @@ module.exports = {
 }
 ```
 
-In [multi-language](../guide/i18n.md) mode, you can also apply it to a specific locale:
+在 [多语言](../guide/i18n.md) 模式下, 你也可以将其应用到某一特定的语言下：
 
 ``` js
 // .vuepress/config.js
 module.exports = {
   themeConfig: {
-     '/': {
+     '/zh/': {
        sidebar: 'auto'
      }
   }
 }
 ```
 
-### Disabling the Sidebar
+### 禁用侧边栏
 
-You can disable the sidebar on a specific page with `YAML front matter`:
+你可以通过 `YAML front matter` 来禁用指定页面的侧边栏：
 
 ``` yaml
 ---
@@ -304,11 +299,11 @@ sidebar: false
 ---
 ```
 
-## Search Box
+## 搜索框
 
-### Built-in Search
+### 内置搜索
 
-You can disable the built-in search box with `themeConfig.search: false`, and customize how many suggestions will be shown with `themeConfig.searchMaxSuggestions`:
+你可以通过设置 `themeConfig.search: false` 来禁用默认的搜索框，或是通过 `themeConfig.searchMaxSuggestions` 来调整默认搜索框显示的搜索结果数量：
 
 ``` js
 module.exports = {
@@ -319,7 +314,8 @@ module.exports = {
 }
 ```
 
-You can also disable the built-in search box for individual pages with `YAML front matter`:
+你可以通过 `YAML front matter` 来对单独的页面禁用内置的搜索框：
+
 ```yaml
 ---
 search: false
@@ -327,14 +323,14 @@ search: false
 ```
 
 ::: tip
-Built-in Search only builds index from the title, `h2` and `h3` headers, if you need full text search, you can use [Algolia DocSearch](#algolia-docsearch).
+内置搜索只会为页面的标题、`h2` 和 `h3` 构建搜索索引，如果你需要全文搜索，你可以使用 [Algolia 搜索](#Algolia-搜索)。
 :::
 
-### Algolia DocSearch
+### Algolia 搜索
 
-The `themeConfig.algolia` option allows you to use [Algolia DocSearch](https://community.algolia.com/docsearch/) to replace the simple built-in search. To enable it, you need to provide at least `apiKey` and `indexName`:
+你可以通过 `themeConfig.algolia` 选项来用 [Algolia 搜索](https://community.algolia.com/docsearch/) 替换内置的搜索框。要启用 Algolia 搜索，你需要至少提供 `apiKey` 和 `indexName`：
 
-``` js
+```js
 module.exports = {
   themeConfig: {
     algolia: {
@@ -345,15 +341,15 @@ module.exports = {
 }
 ```
 
-::: warning Note
-Unlike the [built-in search](#built-in-search) engine which works out of the box, [Algolia DocSearch](https://community.algolia.com/docsearch/) requires you to submit your site to them for indexing before it starts working. 
+::: warning 注意
+不同于开箱即用的 [内置搜索](#内置搜索)，[Algolia 搜索](https://community.algolia.com/docsearch/) 需要你在使用之前将你的网站提交给它们用于创建索引。
 :::
 
-For more options, refer to [Algolia DocSearch's documentation](https://github.com/algolia/docsearch#docsearch-options).
+更多选项请参考 [Algolia DocSearch 的文档](https://github.com/algolia/docsearch#docsearch-options)。
 
-## Last Updated
+## 最后更新时间
 
-The `themeConfig.lastUpdated` option allows you to get the UNIX timestamp(ms) of each file's last `git` commit, and it will also display at the bottom of each page in an appropriate format:
+你可以通过 `themeConfig.lastUpdated` 选项来获取每个文件最后一次 `git` 提交的 UNIX 时间戳(ms)，同时它将以合适的日期格式显示在每一页的底部：
 
 ``` js
 module.exports = {
@@ -363,39 +359,38 @@ module.exports = {
 }
 ```
 
-Note that it's `off` by default. If given a `string`, it will be displayed as a prefix (default value: `Last Updated`).
+请注意，`themeConfig.lastUpdated` 默认是关闭的，如果给定一个字符串，它将会作为前缀显示（默认值是：`Last Updated`）。
 
-::: warning
-  Since `lastUpdated` is based on `git`, you can only use it in a `git` repository. Also, since the timestamp used comes from the git commit, it will display only after a first commit for a given page, and update only on subsequent commits of that page.
+::: warning 使用须知
+  由于 `lastUpdated` 是基于 `git` 的, 所以你只能在一个基于 `git` 的项目中启用它。此外，由于使用的时间戳来自 git commit，因此它将仅在给定页的第一次提交之后显示，并且仅在该页面后续提交更改时更新。
 :::
 
-
-**Also see:**
+**拓展阅读:**
 
 - [@vuepress/plugin-last-updated](../plugin/official/plugin-last-updated.md)
 
 ## Service Worker
 
-The `themeConfig.serviceWorker` option allows you to configure the service worker.
+`themeConfig.serviceWorker` 允许你去配置 Service Worker。
 
-::: tip
-Please do not confuse this option with [Config > serviceWorker](../config/README.md#serviceworker), [Config > serviceWorker](../config/README.md#serviceworker) is **site-level**, while this option is **theme-level**.
+::: tip 提示
+请不要将本选项与 [Config > serviceWorker](../config/README.md#serviceworker) 混淆，[Config > serviceWorker](../config/README.md#serviceworker) 是网站级别的配置，而本选项是主题级别的配置。
 :::
 
-### Popup UI to refresh contents <Badge text="0.13.0+"/> <Badge text="beta" type="warn"/>
+### 刷新内容的弹窗 <Badge text="0.13.0+"/> <Badge text="beta" type="warn"/>
 
-The `themeConfig.serviceWorker.updatePopup` option enables a popup to refresh site content. The popup will be shown when the site is updated (i.e. service worker is updated). It provides a `refresh` button to allow users to refresh contents immediately.
+开启 `themeConfig.serviceWorker.updatePopup` 选项，将开启一个能够刷新内容的弹窗。当网站更新（即 Service Worker 更新）时，它会提供一个 `refresh` 按钮，允许用户立刻刷新内容。
 
-::: tip NOTE
-If without the `refresh` button, the new service worker will be active after all [clients](https://developer.mozilla.org/en-US/docs/Web/API/Clients) are closed. This means that visitors cannot see new contents until they close all tabs of your site. But the `refresh` button activates the new service worker immediately.
+::: tip 提示
+如果没有 `refresh` 按钮，新的 service worker 将在所有的 [clients](https://developer.mozilla.org/en-US/docs/Web/API/Clients) 关闭后才会处于活动状态。这意味着访问者在关闭你网站的所有标签之前将无法看到新内容。但是，`refresh` 按钮可以立即激活新的 Service Worker。
 :::
 
 ``` js
 module.exports = {
   themeConfig: {
     serviceWorker: {
-      updatePopup: true // Boolean | Object, default to undefined.
-      // If set to true, the default text config will be: 
+      updatePopup: true // Boolean | Object, 默认值是 undefined.
+      // 如果设置为 true, 默认的文本配置将是: 
       // updatePopup: { 
       //    message: "New content is available.", 
       //    buttonText: "Refresh" 
@@ -405,9 +400,9 @@ module.exports = {
 }
 ```
 
-## Prev / Next Links
+## 上 / 下一篇链接
 
-Prev and next links are automatically inferred based on the sidebar order of the active page. You can also explicitly overwrite or disable them using `YAML front matter`:
+上一篇和下一篇文章的链接将会自动地根据当前页面的侧边栏的顺序来获取。你也可以使用 `YAML front matter` 来明确地重写或者禁用它：
 
 ``` yaml
 ---
@@ -416,37 +411,37 @@ next: false
 ---
 ```
 
-## Git Repo and Edit Links
+## Git 仓库和编辑链接
 
-Providing `themeConfig.repo` auto generates a GitHub link in the navbar and "Edit this page" links at the bottom of each page.
+当你提供了 `themeConfig.repo` 选项，将会自动在每个页面的导航栏生成生成一个 GitHub 链接，以及在页面的底部生成一个 `"Edit this page"` 链接。
 
 ``` js
 // .vuepress/config.js
 module.exports = {
   themeConfig: {
-    // Assumes GitHub. Can also be a full GitLab url.
+    // 假定是 GitHub. 同时也可以是一个完整的 GitLab URL
     repo: 'vuejs/vuepress',
-    // Customising the header label
-    // Defaults to "GitHub"/"GitLab"/"Bitbucket" depending on `themeConfig.repo`
-    repoLabel: 'Contribute!',
+    // 自定义仓库链接文字。默认从 `themeConfig.repo` 中自动推断为
+    // "GitHub"/"GitLab"/"Bitbucket" 其中之一，或是 "Source"。
+    repoLabel: '查看源码',
 
-    // Optional options for generating "Edit this page" link
+    // 以下为可选的编辑链接选项
 
-    // if your docs are in a different repo from your main project:
-    docsRepo: 'vuejs/vuepress',
-    // if your docs are not at the root of the repo:
-    docsDir: 'docs',
-    // if your docs are in a specific branch (defaults to 'master'):
-    docsBranch: 'master',
-    // defaults to false, set to true to enable
+    // 假如你的文档仓库和项目本身不在一个仓库：
+    docsRepo: 'vuejs/vuepress',
+    // 假如文档不是放在仓库的根目录下：
+    docsDir: 'docs',
+    // 假如文档放在一个特定的分支下：
+    docsBranch: 'master',
+    // 默认是 false, 设置为 true 来启用
     editLinks: true,
-    // custom text for edit link. Defaults to "Edit this page"
-    editLinkText: 'Help us improve this page!'
+    // 默认为 "Edit this page"
+    editLinkText: '帮助我们改善此页面！'
   }
 }
 ```
 
-You can also hide the edit link on a specific page via `YAML front matter`:
+你可以通过 `YAML front matter` 来禁用指定页面的编辑链接：
 
 ``` yaml
 ---
@@ -454,9 +449,9 @@ editLink: false
 ---
 ```
 
-## Custom Page Class
+## 自定义页面类
 
-Sometimes, you may need to add a unique class for a specific page so that you can target content on that page only in custom CSS. You can add a class to the theme container div with `pageClass` in `YAML front matter`:
+有时候你可能需要为特定页面添加一个 CSS 类名，以方便针对该页面添加一些专门的 CSS。这种情况下你可以在该页面的 YAML front matter 中声明一个 `pageClass`：
 
 ``` yaml
 ---
@@ -464,22 +459,19 @@ pageClass: custom-page-class
 ---
 ```
 
-Then you can write CSS targeting that page only in `./vuepress/styles/index.styl`.
+然后你就可以写专门针对该页面的 CSS 了：
 
 ``` css
+/* .vuepress/override.styl */
 
 .theme-container.custom-page-class {
-  /* page-specific rules */
+  /* 特定页面的 CSS */
 }
 ```
 
-::: tip Note
-These styles are written in [index.styl](/config/#index-styl), a file that allows you to conveniently add extra styles or override existing ones for the default theme.
-:::
+## 特定页面的自定义布局
 
-## Custom Layout for Specific Pages
-
-By default the content of each `*.md` file is rendered in a `<div class="page">` container, along with the sidebar, auto-generated edit links and prev/next links. If you wish to use a completely custom component in place of the page, you can again specify the component to use using `YAML front matter`:
+默认情况下，每个 `*.md` 文件将会被渲染在一个 `<div class="page">` 容器中，同时还有侧边栏、自动生成的编辑链接，以及上 / 下一篇文章的链接。如果你想要使用一个完全自定义的组件来代替当前的页面（而只保留导航栏），你可以再次使用 `YAML front matter` 来指定这个组件。
 
 ``` yaml
 ---
@@ -487,12 +479,4 @@ layout: SpecialLayout
 ---
 ```
 
-This will render `.vuepress/components/SpecialLayout.vue` for the given page.
-
-## Ejecting
-
-You can copy the default theme source code into `.vuepress/theme` to fully customize the theme using the `vuepress eject [targetDir]` command. 
-
-::: warning
-Once you eject, you are on your own and **won't** be receiving future updates or bug fixes to the default theme even if you upgrade VuePress.
-:::
+这将会为当前的页面渲染 `.vuepress/components/SpecialLayout.vue` 布局。

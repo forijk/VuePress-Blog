@@ -1,21 +1,20 @@
 ---
 title: google-analytics
-metaTitle: Google Analytics Plugin | VuePress
+metaTitle: Google Analytics 插件 | VuePress
 ---
 
-# [@vuepress/plugin-google-analytics](https://github.com/vuejs/vuepress/tree/master/packages/%40vuepress/plugin-google-analytics)
+# [@vuepress/plugin-google-analytics](https://github.com/vuejs/vuepress/tree/master/packages/@vuepress/plugin-google-analytics)
 
+> Google analytics 插件
 
-> Google analytics plugin
-
-## Install
+## 安装
 
 ```bash
 yarn add -D @vuepress/plugin-google-analytics@next
 # OR npm install -D @vuepress/plugin-google-analytics@next
 ```
 
-## Usage
+## 使用
 
 ```javascript
 module.exports = {
@@ -30,15 +29,15 @@ module.exports = {
 }
 ```
 
-::: tip
-Please be aware of [GDPR (2018 reform of EU data protection rules)](https://ec.europa.eu/commission/priorities/justice-and-fundamental-rights/data-protection/2018-reform-eu-data-protection-rules_en) and consider setting Google Analytics to [anonymize IPs](https://support.google.com/analytics/answer/2763052?hl=en) where appropriate and/or needed.
+::: tip 提示
+请留意 [GDPR (2018年欧盟数据保护规则改革)](https://ec.europa.eu/commission/priorities/justice-and-fundamental-rights/data-protection/2018-reform-eu-data-protection-rules_en), 在合适或者需要的情况下，考虑将 Google Analytics 设置为[匿名化的 IP](https://support.google.com/analytics/answer/2763052?hl=zh-Hans)。
 :::
 
-## Options
+## 选项
 
 ### ga
 
-- Type: `string`
-- Default: `undefined`
+- 类型: `string`
+- 默认值: `undefined`
 
-Provide the Google Analytics ID to enable integration.
+提供 Google Analytics ID 以启用集成。
