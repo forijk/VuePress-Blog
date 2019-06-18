@@ -1,2 +1,1 @@
-# VuePress-Blog
-VuePress-Blog
+# Hello VuePress!
