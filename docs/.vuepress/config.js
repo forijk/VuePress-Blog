@@ -5,8 +5,8 @@ module.exports = ctx => ({
   locales: {
     "/": {
       lang: "zh-CN",
-      title: "VuePress 1.x",
-      description: "Vue 驱动的静态网站生成器"
+      title: "forijk",
+      description: "简易博客"
     }
   },
   head: [
