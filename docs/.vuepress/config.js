@@ -41,7 +41,7 @@ module.exports = ctx => ({
   ],
   theme: "@vuepress/vue",
   themeConfig: {
-    repo: "vuejs/vuepress",
+    repo: "forijk/vuepress",
     editLinks: true,
     docsDir: "packages/docs/docs",
     locales: {
